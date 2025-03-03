@@ -67,13 +67,22 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp L             &kp U         &kp COMMA                    &kp DOT                                                  &kp F        &kp W  &lt 5 R  &kp Y  &kp P
-&kp E             &kp I             &kp A         &kp O                        &kp UNDER    &kp LS(LG(TAB))              &kp MINUS      &kp K        &kp T  &kp N    &kp S  &kp H
-&mt LEFT_SHIFT Z  &kp X             &kp C         &kp V                        &kp B        &kp LANG_ZENKAKUHANKAKU      &kp SEMICOLON  &kp G        &kp D  &kp M    &kp J  &kp B
-&kp LEFT_SHIFT    &kp LEFT_CONTROL  &kp LEFT_ALT  &lt_to_layer_0 6 INT_HENKAN  &lt 2 SPACE  &lt_to_layer_0 3 ENTER       &kp BACKSPACE  &lt 1 ENTER                         &kp DEL
+&kp Q             &kp L       &kp U         &kp COMMA                    &kp DOT                                                &kp F                 &kp W  &lt 5 R  &kp Y  &kp P
+&kp E             &kp I       &kp A         &kp O                        &kp UNDER  &kp LS(LG(TAB))              &kp F10        &kp K                 &kp T  &kp N    &kp S  &kp H
+&mt LEFT_SHIFT Z  &kp X       &kp C         &kp V                        &kp B      &kp LANG_ZENKAKUHANKAKU      &kp F7         &kp G                 &kp D  &kp M    &kp J  &kp B
+&kp LCTRL         &kp LSHIFT  &kp LEFT_ALT  &lt_to_layer_0 6 INT_HENKAN  &kp SPACE  &lt_to_layer_0 1 ENTER       &kp BACKSPACE  &lt_to_layer_0 1 TAB                         &kp DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+        };
+
+        NUM {
+            bindings = <
+&kp MINUS  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp PLUS                                       &kp AT_SIGN      &kp EXCLAMATION       &kp UP_ARROW   &kp QUESTION           &trans
+&kp SLASH  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &trans            &trans         &kp EXCLAMATION  &kp LEFT_ARROW        &kp AMPERSAND  &kp RIGHT_ARROW        &trans
+&trans     &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp EQUAL     &trans            &trans         &trans           &kp LEFT_PARENTHESIS  &kp DOWN       &kp RIGHT_PARENTHESIS  &trans
+&trans     &kp PERIOD       &kp KP_NUMBER_0  &trans           &trans        &kp KP_ENTER      &kp BACKSPACE  &trans                                                                       &trans
+            >;
         };
 
         FUNCTION {
@@ -82,15 +91,6 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans  &trans  &trans  &kp F11
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
-            >;
-        };
-
-        NUM {
-            bindings = <
-&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp PLUS                                                   &kp CARET         &kp AMPERSAND      &kp TILDE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp EXCLAMATION   &kp AT_SIGN        &kp HASH        &kp DOLLAR            &kp PERCENT
-&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD    &kp EQUAL                    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
-&trans                      &trans           &trans           &trans           &trans        &trans                       &trans          &trans                                                                     &kp PIPE
             >;
         };
 
