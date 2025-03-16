@@ -50,6 +50,11 @@
             bindings = <&none>;
             key-positions = <19 20>;
         };
+
+        layer6 {
+            bindings = <&to 6>;
+            key-positions = <42 40 41>;
+        };
     };
 
     macros {
