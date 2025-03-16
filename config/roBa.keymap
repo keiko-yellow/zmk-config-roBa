@@ -53,7 +53,7 @@
 
         layer6 {
             bindings = <&to 6>;
-            key-positions = <42 40 41>;
+            key-positions = <37 38 39>;
         };
     };
 
