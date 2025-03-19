@@ -82,10 +82,10 @@
 
         default_layer {
             bindings = <
-&kp Q    &kp L       &kp U         &kp COMMA        &kp DOT                                                          &kp F                 &kp W               &lt 5 R  &kp Y  &kp P
-&kp E    &kp I       &kp A         &kp O            &kp MINUS               &kp INT_KANA              &kp F10        &kp K                 &lt_to_layer_0 1 T  &kp N    &kp S  &kp H
-&kp Z    &kp X       &kp C         &kp V            &kp B                   &kp LEFT_GUI              &kp F7         &kp G                 &kp D               &kp M    &kp J  &kp B
-&kp ESC  &kp LSHIFT  &kp LEFT_ALT  &mt LG(TAB) TAB  &mt LEFT_CONTROL SPACE  &mt LEFT_SHIFT ENTER      &kp BACKSPACE  &lt_to_layer_0 1 TAB                                      &lt_to_layer_0 6 DEL
+&kp Q    &kp L       &kp U         &kp COMMA         &kp DOT                                            &kp F                   &kp W               &lt 5 R  &kp Y  &kp P
+&kp E    &kp I       &kp A         &kp O             &kp MINUS  &kp INT_KANA             &kp F10        &kp K                   &lt_to_layer_0 1 T  &kp N    &kp S  &kp H
+&kp Z    &kp X       &kp C         &kp V             &kp B      &kp LEFT_GUI             &kp F7         &kp G                   &kp D               &kp M    &kp J  &kp B
+&kp ESC  &kp LSHIFT  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp TAB    &mt LC(ENTER) ENTER      &kp BACKSPACE  &lt_to_layer_0 1 SPACE                                      &lt_to_layer_0 6 DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -96,7 +96,7 @@
 &kp LANGUAGE_4            &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp EQUAL                                      &kp AT_SIGN      &kp EXCLAMATION       &kp UP_ARROW   &kp QUESTION           &trans
 &kp INT_KATAKANAHIRAGANA  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &kp SLASH         &kp SEMICOLON  &kp EXCLAMATION  &kp LEFT_ARROW        &kp AMPERSAND  &kp RIGHT_ARROW        &trans
 &kp LANGUAGE_5            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PLUS      &kp MINUS         &trans         &kp COLON        &kp LEFT_PARENTHESIS  &kp DOWN       &kp RIGHT_PARENTHESIS  &trans
-&trans                    &kp PERIOD       &kp KP_NUMBER_0  &trans           &trans        &kp KP_ENTER      &kp BACKSPACE  &trans                                                                       &trans
+&trans                    &kp PERIOD       &kp KP_NUMBER_0  &kp LEFT_GUI     &trans        &kp KP_ENTER      &kp BACKSPACE  &trans                                                                       &trans
             >;
         };
 
