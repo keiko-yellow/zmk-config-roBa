@@ -16,11 +16,6 @@
     combos {
         compatible = "zmk,combos";
 
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
-        };
-
         muhennkann {
             bindings = <&to_layer_0 INT_MUHENKAN>;
             key-positions = <11 10>;
@@ -28,32 +23,37 @@
 
         double_quotation {
             bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
+            key-positions = <9 8>;
         };
 
         windows {
-            bindings = <&none>;
-            key-positions = <13 12>;
+            bindings = <&kp LEFT_WIN>;
+            key-positions = <34 38>;
         };
 
         ctrl {
-            bindings = <&none>;
+            bindings = <&kp LEFT_CONTROL>;
             key-positions = <18 19>;
         };
 
         Alt {
-            bindings = <&none>;
-            key-positions = <20 21>;
+            bindings = <&kp LC(LEFT_SHIFT)>;
+            key-positions = <20 19>;
         };
 
         shift {
-            bindings = <&none>;
-            key-positions = <19 20>;
+            bindings = <&kp LEFT_SHIFT>;
+            key-positions = <41 42>;
         };
 
         layer6 {
             bindings = <&to 6>;
-            key-positions = <37 38 39>;
+            key-positions = <0 1>;
+        };
+
+        a {
+            bindings = <&kp AT_SIGN>;
+            key-positions = <6 7>;
         };
     };
 
