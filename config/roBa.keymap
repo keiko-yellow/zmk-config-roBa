@@ -22,7 +22,7 @@
         };
 
         double_quotation {
-            bindings = <&kp DOUBLE_QUOTES>;
+            bindings = <&kp DQT>;
             key-positions = <9 8>;
         };
 
@@ -52,7 +52,7 @@
         };
 
         a {
-            bindings = <&kp AT_SIGN>;
+            bindings = <&kp AT>;
             key-positions = <6 7>;
         };
     };
