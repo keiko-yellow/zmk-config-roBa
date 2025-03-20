@@ -93,10 +93,10 @@
 
         NUM {
             bindings = <
-&kp LANGUAGE_4            &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp EQUAL                                      &kp LS(NUMBER_2)  &kp EXCLAMATION       &kp UP_ARROW   &kp QUESTION           &trans
-&kp INT_KATAKANAHIRAGANA  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &kp SLASH         &kp SEMICOLON  &kp EXCLAMATION   &kp LEFT_ARROW        &kp AMPERSAND  &kp RIGHT_ARROW        &trans
-&kp LANGUAGE_5            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PLUS      &kp MINUS         &trans         &kp COLON         &kp LEFT_PARENTHESIS  &kp DOWN       &kp RIGHT_PARENTHESIS  &trans
-&trans                    &kp PERIOD       &kp KP_NUMBER_0  &kp LEFT_GUI     &trans        &kp KP_ENTER      &kp BACKSPACE  &trans                                                                        &trans
+&kp LANGUAGE_4            &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp EQUAL                                      &kp LS(NUMBER_2)  &kp EXCLAMATION       &kp UP_ARROW  &kp QUESTION           &trans
+&kp INT_KATAKANAHIRAGANA  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &kp SLASH         &kp SEMICOLON  &kp EXCLAMATION   &kp LEFT_ARROW        &kp LS(N7)    &kp RIGHT_ARROW        &trans
+&kp LANGUAGE_5            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PLUS      &kp MINUS         &trans         &kp COLON         &kp LEFT_PARENTHESIS  &kp DOWN      &kp RIGHT_PARENTHESIS  &trans
+&trans                    &kp PERIOD       &kp KP_NUMBER_0  &kp LEFT_GUI     &trans        &kp KP_ENTER      &kp BACKSPACE  &trans                                                                       &trans
             >;
         };
 
