@@ -95,7 +95,7 @@
             bindings = <
 &kp LANGUAGE_4            &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp UNDERSCORE                                   &kp LEFT_BRACKET  &kp EXCLAMATION  &kp UP_ARROW  &kp QUESTION     &trans
 &kp INT_KATAKANAHIRAGANA  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK    &kp SLASH         &kp SEMICOLON  &kp AT_SIGN       &kp LEFT_ARROW   &kp CARET     &kp RIGHT_ARROW  &trans
-&kp LANGUAGE_5            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PLUS        &kp MINUS         &kp N2         &kp COLON         &kp ASTRK        &kp DOWN      &kp LPAR         &trans
+&kp LANGUAGE_5            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp COLON       &kp MINUS         &kp N2         &kp COLON         &kp ASTRK        &kp DOWN      &kp LPAR         &trans
 &trans                    &kp PERIOD       &kp KP_NUMBER_0  &kp LEFT_GUI     &trans          &kp KP_ENTER      &kp BACKSPACE  &trans                                                            &trans
             >;
         };
