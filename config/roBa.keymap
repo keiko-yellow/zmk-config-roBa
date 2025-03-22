@@ -47,7 +47,7 @@
         };
 
         layer6 {
-            bindings = <&to 6>;
+            bindings = <&to 3>;
             key-positions = <0 1>;
         };
 
@@ -82,10 +82,10 @@
 
         default_layer {
             bindings = <
-&kp Q    &kp L       &kp U         &kp COMMA         &kp DOT                                       &kp F                   &kp W  &kp R  &kp Y  &kp P
-&kp E    &kp I       &kp A         &kp O             &kp MINUS  &kp LANGUAGE_1      &kp F10        &kp K                   &kp T  &kp N  &kp S  &kp H
-&kp Z    &kp X       &kp C         &kp V             &kp B      &kp LANGUAGE_2      &kp F7         &kp G                   &kp D  &kp M  &kp J  &kp B
-&kp ESC  &kp LSHIFT  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp TAB    &kp ENTER           &kp BACKSPACE  &lt_to_layer_0 1 SPACE                       &lt_to_layer_0 2 DEL
+&kp Q                 &kp L       &kp U         &kp COMMA         &kp DOT                                       &kp F                   &kp W  &kp R  &kp Y  &kp P
+&kp E                 &kp I       &kp A         &kp O             &kp MINUS  &kp LANGUAGE_1      &kp F7         &kp K                   &kp T  &kp N  &kp S  &kp H
+&kp Z                 &kp X       &kp C         &kp V             &kp B      &kp LANGUAGE_2      &kp F10        &kp G                   &kp D  &kp M  &kp J  &kp B
+&lt_to_layer_0 3 ESC  &kp LSHIFT  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp TAB    &kp ENTER           &kp BACKSPACE  &lt_to_layer_0 1 SPACE                       &lt_to_layer_0 2 DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -109,15 +109,13 @@
             >;
         };
 
-        NG_ARROW {
+        layer_BT_SEL0-4 {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &trans  &trans  &trans  &trans  &trans
-&kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
+&trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
+&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
             >;
-
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
 
         MOUSE {
@@ -129,21 +127,23 @@
             >;
         };
 
-        SCROLL {
+        NG_ARROW {
+            bindings = <
+&kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &trans  &trans  &trans  &trans  &trans
+&kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+        };
+
+        NG_SCROLL {
             bindings = <
 &kp KP_EQUAL     &kp LC(AT_SIGN)  &kp PIPE          &kp COMMA  &trans                            &kp AT_SIGN   &kp POUND    &kp CARET      &kp LEFT_PARENTHESIS   &kp UNDERSCORE
 &kp KP_SLASH     &kp RS(AT_SIGN)  &kp GRAVE         &trans     &trans  &trans      &kp NUMBER_2  &kp AT        &kp DOLLAR   &kp AMPERSAND  &kp RIGHT_PARENTHESIS  &kp EQUAL
 &kp LS(AT_SIGN)  &kp RIGHT_BRACE  &kp TILDE         &trans     &trans  &trans      &kp N2        &kp NUMBER_3  &kp PERCENT  &kp ASTERISK   &kp MINUS              &kp LEFT_BRACKET
 &kp LA(AT_SIGN)  &kp BACKSLASH    &kp GREATER_THAN  &trans     &trans  &trans      &trans        &trans                                                           &kp RIGHT_BRACKET
-            >;
-        };
-
-        layer_6 {
-            bindings = <
-&trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
             >;
         };
     };
