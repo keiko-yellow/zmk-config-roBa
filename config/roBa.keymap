@@ -82,10 +82,10 @@
 
         default_layer {
             bindings = <
-&kp Q    &kp L       &kp U         &kp COMMA         &kp DOT                                       &kp F                   &kp W  &kp R  &kp Y  &kp P
-&kp E    &kp I       &kp A         &kp O             &kp MINUS  &kp LANGUAGE_1      &kp F10        &kp K                   &kp T  &kp N  &kp S  &kp H
-&kp Z    &kp X       &kp C         &kp V             &kp B      &kp LANGUAGE_2      &kp F7         &kp G                   &kp D  &kp M  &kp J  &kp B
-&kp ESC  &kp LSHIFT  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp TAB    &kp ENTER           &kp BACKSPACE  &lt_to_layer_0 1 SPACE                       &lt_to_layer_0 6 DEL
+&kp Q    &kp L       &kp U         &kp COMMA         &kp DOT                                         &kp F                   &kp W  &kp R  &kp Y  &kp P
+&kp E    &kp I       &kp A         &kp O             &kp MINUS  &kp LANGUAGE_1      &kp F10          &kp K                   &kp T  &kp N  &kp S  &kp H
+&kp Z    &kp X       &kp C         &kp V             &kp B      &kp LANGUAGE_2      &kp F7           &kp G                   &kp D  &kp M  &kp J  &kp B
+&kp ESC  &kp LSHIFT  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp TAB    &kp ENTER           &lt 5 BACKSPACE  &lt_to_layer_0 1 SPACE                       &lt_to_layer_0 6 DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -131,10 +131,10 @@
 
         SCROLL {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&kp KP_EQUAL     &kp LC(AT_SIGN)  &trans  &trans  &trans                            &kp AT_SIGN   &kp POUND    &kp CARET      &kp LEFT_PARENTHESIS   &kp UNDERSCORE
+&kp KP_SLASH     &kp RS(AT_SIGN)  &trans  &trans  &trans  &trans      &kp NUMBER_2  &kp AT        &kp DOLLAR   &kp AMPERSAND  &kp RIGHT_PARENTHESIS  &kp EQUAL
+&kp LS(AT_SIGN)  &trans           &trans  &trans  &trans  &trans      &kp N2        &kp NUMBER_3  &kp PERCENT  &kp ASTERISK   &kp MINUS              &kp LEFT_BRACKET
+&kp LA(AT_SIGN)  &trans           &trans  &trans  &trans  &trans      &trans        &trans                                                           &kp RIGHT_BRACKET
             >;
         };
 
