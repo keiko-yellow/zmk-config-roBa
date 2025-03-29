@@ -93,10 +93,10 @@
 
         NUM_ARROW {
             bindings = <
-&kp KP_N6        &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_NUMBER_0                         &kp LS(NUMBER_6)   &kp EXCLAMATION  &kp UP_ARROW      &kp QUESTION          &trans
-&kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &trans         &trans  &kp AT_SIGN        &kp LEFT_ARROW   &kp LEFT_BRACKET  &kp RIGHT_ARROW       &trans
-&kp PLUS         &kp MINUS        &kp DOT          &kp LS(N8)       &kp SLASH        &trans         &trans  &kp LS(SEMICOLON)  &kp ASTERISK     &kp DOWN          &kp LEFT_PARENTHESIS  &trans
-&trans           &trans           &trans           &kp COLON        &kp UNDERSCORE   &kp MINUS      &trans  &trans                                                                      &trans
+&kp KP_N6          &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9        &kp KP_NUMBER_0                              &kp LS(NUMBER_6)   &kp EXCLAMATION  &kp UP_ARROW      &kp QUESTION          &trans
+&kp KP_NUMBER_1    &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_NUMBER_4        &kp KP_NUMBER_5  &trans              &trans  &kp AT_SIGN        &kp LEFT_ARROW   &kp LEFT_BRACKET  &kp RIGHT_ARROW       &trans
+&kp LS(SEMICOLON)  &trans           &kp DOT          &kp LS(DOUBLE_QUOTES)  &kp SLASH        &trans              &trans  &kp DOUBLE_QUOTES  &kp ASTERISK     &kp DOWN          &kp LEFT_PARENTHESIS  &trans
+&kp PLUS           &trans           &trans           &kp COLON              &kp MINUS        &kp UNDERSCORE      &trans  &trans                                                                      &trans
             >;
         };
 
