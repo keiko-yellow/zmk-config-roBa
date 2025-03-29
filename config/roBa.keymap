@@ -21,29 +21,14 @@
             key-positions = <11 10>;
         };
 
-        double_quotation {
-            bindings = <&kp DQT>;
-            key-positions = <9 8>;
-        };
-
-        windows {
-            bindings = <&kp LEFT_WIN>;
-            key-positions = <34 38>;
-        };
-
         ctrl {
             bindings = <&kp LEFT_CONTROL>;
             key-positions = <18 19>;
         };
 
-        Alt {
-            bindings = <&kp LC(LEFT_SHIFT)>;
+        del {
+            bindings = <&kp DELETE>;
             key-positions = <20 19>;
-        };
-
-        shift {
-            bindings = <&kp LEFT_SHIFT>;
-            key-positions = <41 42>;
         };
 
         layer6 {
@@ -51,9 +36,14 @@
             key-positions = <0 1>;
         };
 
-        a {
-            bindings = <&kp AT>;
+        capslock {
+            bindings = <&caps_word>;
             key-positions = <6 7>;
+        };
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <30 31>;
         };
     };
 
@@ -82,10 +72,10 @@
 
         default_layer {
             bindings = <
-&lt_to_layer_0 3 Q    &kp L           &kp U         &kp COMMA         &kp DOT                                       &kp F                   &kp W  &kp R  &kp Y  &kp P
-&kp E                 &kp I           &kp A         &kp O             &kp MINUS  &kp LANGUAGE_1      &kp F7         &kp K                   &kp T  &kp N  &kp S  &kp H
-&kp Z                 &kp X           &kp C         &kp V             &kp B      &kp LANGUAGE_2      &kp F10        &kp G                   &kp D  &kp M  &kp J  &kp B
-&lt_to_layer_0 4 ESC  &kp LEFT_SHIFT  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp TAB    &kp ENTER           &kp BACKSPACE  &lt_to_layer_0 1 SPACE                       &lt_to_layer_0 2 DEL
+&lt_to_layer_0 3 Q        &kp L                &kp U         &kp COMMA   &kp DOT                                       &kp F                   &kp W  &kp R  &kp Y  &kp P
+&kp E                     &kp I                &kp A         &kp O       &kp MINUS  &kp LANGUAGE_1      &kp F7         &kp K                   &kp T  &kp N  &kp S  &kp H
+&kp Z                     &kp X                &kp C         &kp V       &kp B      &kp LANGUAGE_2      &kp F10        &kp G                   &kp D  &kp M  &kp J  &kp B
+&lt_to_layer_0 4 LC(ESC)  &mt LGUI LEFT_SHIFT  &kp LEFT_ALT  &kp LSHIFT  &kp TAB    &kp ENTER           &kp BACKSPACE  &lt_to_layer_0 1 SPACE                       &mt RIGHT_CONTROL DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
