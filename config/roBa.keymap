@@ -83,19 +83,19 @@
 
         NUM_ARROW {
             bindings = <
-&kp SLASH      &kp KP_NUMBER_7       &kp KP_NUMBER_8        &kp KP_NUMBER_9  &kp ASTRK                         &kp LS(NUMBER_6)   &kp EXCLAMATION  &kp UP_ARROW      &kp QUESTION          &trans
-&kp PERIOD     &kp KP_N4             &kp KP_N5              &kp KP_N6        &kp KP_N0  &trans         &trans  &kp AT_SIGN        &kp LEFT_ARROW   &kp LEFT_BRACKET  &kp RIGHT_ARROW       &kp LS(EXCLAMATION)
-&kp LS(MINUS)  &kp KP_N1             &kp KP_N2              &kp KP_N3        &kp PLUS   &trans         &trans  &kp DOUBLE_QUOTES  &kp ASTERISK     &kp DOWN          &kp LEFT_PARENTHESIS  &kp LS(QUESTION)
-&kp LCTRL      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB          &kp SPACE  &kp EQUAL      &trans  &trans                                                                      &trans
+&kp SLASH      &kp KP_NUMBER_7       &kp KP_NUMBER_8        &kp KP_NUMBER_9  &kp ASTRK                                &kp LS(DOLLAR)  &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
+&kp PERIOD     &kp KP_N4             &kp KP_N5              &kp KP_N6        &kp KP_N0  &trans         &kp PAGE_UP    &kp AMPERSAND   &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
+&kp LS(MINUS)  &kp KP_N1             &kp KP_N2              &kp KP_N3        &kp PLUS   &trans         &kp PAGE_DOWN  &kp PERCENT     &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp RC(MINUS)
+&kp LCTRL      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB          &kp SPACE  &kp EQUAL      &kp BACKSPACE  &kp ENTER                                                &kp DEL
             >;
         };
 
         SIGN_FUNCTION {
             bindings = <
-&kp LS(NUMBER_3)  &kp LS(NUMBER_4)  &kp LS(N5)  &kp PLUS       &trans                      &kp F9  &kp F10  &kp F11  &kp F12  &trans
-&kp LS(COMMA)     &kp LS(PERIOD)    &kp PIPE    &kp LS(SLASH)  &trans  &trans      &trans  &kp F5  &kp F6   &kp F7   &kp F8   &trans
-&trans            &trans            &trans      &trans         &trans  &trans      &trans  &kp F1  &kp F2   &kp F3   &kp F4   &trans
-&trans            &trans            &trans      &trans         &trans  &trans      &trans  &trans                             &trans
+&kp LS(NUMBER_3)  &kp LS(NUMBER_4)  &kp LS(N5)  &kp PLUS       &trans                      &kp F9  &kp F10  &kp F11      &kp F12       &trans
+&kp LS(COMMA)     &kp LS(PERIOD)    &kp PIPE    &kp LS(SLASH)  &trans  &trans      &trans  &kp F5  &kp F6   &kp AT_SIGN  &kp QUESTION  &kp RS(EXCLAMATION)
+&trans            &trans            &trans      &trans         &trans  &trans      &trans  &kp F1  &kp F2   &kp F3       &kp F4        &trans
+&trans            &trans            &trans      &trans         &trans  &trans      &trans  &trans                                      &trans
             >;
         };
 
