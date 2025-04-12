@@ -21,7 +21,7 @@
             key-positions = <11 10>;
         };
 
-        ctrl {
+        ctrl2 {
             bindings = <&kp LEFT_CONTROL>;
             key-positions = <18 19>;
         };
