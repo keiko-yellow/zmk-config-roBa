@@ -85,7 +85,7 @@
             bindings = <
 &kp SLASH      &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp ASTRK                                         &kp LS(DOLLAR)   &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
 &kp PERIOD     &kp NUMBER_4          &kp NUMBER_5           &kp NUMBER_6  &kp NUMBER_0  &trans             &kp PAGE_UP      &kp AMPERSAND    &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
-&kp LS(MINUS)  &kp NUMBER_1          &kp NUMBER_2           &kp NUMBER_3  &kp COLON     &trans             &kp PAGE_DOWN    &kp PERCENT      &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp RC(MINUS)
+&kp LS(MINUS)  &kp N1                &kp NUMBER_2           &kp NUMBER_3  &kp COLON     &trans             &kp PAGE_DOWN    &kp PERCENT      &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp RC(MINUS)
 &kp LCTRL      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB       &kp SPACE     &kp LS(MINUS)      &lt 2 BACKSPACE  &lt 1 LC(ENTER)                                           &lt 3 DELETE
             >;
         };
