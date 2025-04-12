@@ -31,9 +31,9 @@
             key-positions = <20 19>;
         };
 
-        layer6 {
-            bindings = <&to 3>;
-            key-positions = <0 1>;
+        ctrl {
+            bindings = <&kp LCTRL>;
+            key-positions = <13 12 13>;
         };
 
         capslock {
@@ -72,10 +72,10 @@
 
         default_layer {
             bindings = <
-&kp Q    &kp L          &kp U            &kp COMMA  &kp DOT                                                         &kp F                   &kp W  &kp R  &kp Y  &kp P
-&kp E    &kp I          &kp A            &kp O      &kp MINUS    &kp LANGUAGE_1            &kp LANG_ZENKAKUHANKAKU  &kp K                   &kp T  &kp N  &kp S  &kp H
-&kp Z    &kp X          &kp C            &kp V      &kp B        &kp LANGUAGE_2            &kp F10                  &kp G                   &kp D  &kp M  &kp J  &kp B
-&kp ESC  &mt LCTRL F10  &mt LEFT_ALT F7  &lt 1 TAB  &lt 2 SPACE  &mt LCTRL INT_HENKAN      &lt 2 BACKSPACE          &lt_to_layer_0 1 ENTER                       &lt 3 DEL
+&kp Q      &kp L          &kp U            &kp COMMA  &kp DOT                                                         &kp F                   &kp W  &kp R  &kp Y  &kp P
+&kp E      &kp I          &kp A            &kp O      &kp MINUS    &kp LANGUAGE_1            &kp LANG_ZENKAKUHANKAKU  &kp K                   &kp T  &kp N  &kp S  &kp H
+&kp Z      &kp X          &kp C            &kp V      &kp B        &kp LANGUAGE_2            &kp F10                  &kp G                   &kp D  &kp M  &kp J  &kp B
+&lt 6 ESC  &mt LCTRL F10  &mt LEFT_ALT F7  &lt 1 TAB  &lt 2 SPACE  &mt LCTRL INT_HENKAN      &lt 2 BACKSPACE          &lt_to_layer_0 1 ENTER                       &lt 3 DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -83,10 +83,10 @@
 
         NUM_ARROW {
             bindings = <
-&kp SLASH      &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp ASTRK                                       &kp LS(DOLLAR)       &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
-&kp PERIOD     &kp NUMBER_4          &kp NUMBER_5           &kp NUMBER_6  &kp NUMBER_0  &trans             &kp PAGE_UP    &kp AMPERSAND        &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
-&kp LS(MINUS)  &kp NUMBER_1          &kp NUMBER_2           &kp NUMBER_3  &kp PLUS      &trans             &kp PAGE_DOWN  &kp PERCENT          &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp RC(MINUS)
-&kp LCTRL      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB       &kp SPACE     &kp LS(MINUS)      &kp BACKSPACE  &mt RCTRL LC(SPACE)                                           &kp DEL
+&kp SLASH      &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp ASTRK                                         &kp LS(DOLLAR)   &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
+&kp PERIOD     &kp NUMBER_4          &kp NUMBER_5           &kp NUMBER_6  &kp NUMBER_0  &trans             &kp PAGE_UP      &kp AMPERSAND    &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
+&kp LS(MINUS)  &kp NUMBER_1          &kp NUMBER_2           &kp NUMBER_3  &kp COLON     &trans             &kp PAGE_DOWN    &kp PERCENT      &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp RC(MINUS)
+&kp LCTRL      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB       &kp SPACE     &kp LS(MINUS)      &lt 2 BACKSPACE  &lt 1 LC(ENTER)                                           &lt 3 DELETE
             >;
         };
 
