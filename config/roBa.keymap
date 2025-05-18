@@ -72,16 +72,16 @@
 
         default_layer {
             bindings = <
-&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                  &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS  &kp F7                             &kp DELETE               &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10                            &kp LANG_ZENKAKUHANKAKU  &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
-&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE  &mt LANG_ZENKAKUHANKAKU ENTER      &lt 2 BACKSPACE          &lt 2 ENTER                       &kp PRINTSCREEN
+&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                    &kp F        &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS  &kp F7                             &kp DELETE                 &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10                            &kp LANG_ZENKAKUHANKAKU    &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE  &mt LANG_ZENKAKUHANKAKU ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
-        NUM_ARROW {
+        NG_NUM_ARROW {
             bindings = <
 &kp FSLH    &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp LS(DOUBLE_QUOTES)                                      &kp LS(DOLLAR)   &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
 &kp PERIOD  &kp NUMBER_4          &kp NUMBER_5           &kp NUMBER_6  &kp NUMBER_0           &trans             &kp PAGE_UP      &kp AMPERSAND    &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
@@ -92,19 +92,19 @@
 
         SIGN_FUNCTION {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &kp F9  &kp F10  &kp F4       &kp F12       &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp F5  &kp F6   &kp AT_SIGN  &kp QUESTION  &kp RS(EXCLAMATION)
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp F1  &kp F2   &kp F3       &kp F4        &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                      &trans
+&trans  &trans  &trans  &trans  &trans                      &kp F9      &kp N7        &kp N8        &kp N9        &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp N0      &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp RS(EXCLAMATION)
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp PERIOD  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                &trans
             >;
         };
 
         layer_BT_SEL0-4 {
             bindings = <
-&trans  &gresc        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
+&trans  &trans  &trans  &trans  &trans                      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &trans
             >;
         };
 
