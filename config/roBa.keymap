@@ -16,9 +16,9 @@
     combos {
         compatible = "zmk,combos";
 
-        muhennkann {
-            bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <11 10>;
+        del {
+            bindings = <&kp DELETE>;
+            key-positions = <20 21>;
         };
 
         mb1 {
@@ -67,15 +67,6 @@
         };
     };
 
-    macros {
-        to_layer_0: to_layer_0 {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-            label = "TO_LAYER_0";
-        };
-    };
-
     behaviors {
         lt_to_layer_0: lt_to_layer_0 {
             compatible = "zmk,behavior-hold-tap";
@@ -93,8 +84,8 @@
         default_layer {
             bindings = <
 &kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                    &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS  &kp F7                             &kp DELETE                 &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10                            &kp LANG_ZENKAKUHANKAKU    &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS  &kp F7                             &kp INT2                   &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10                            &kp INTERNATIONAL_1        &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
 &kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE  &mt LANG_ZENKAKUHANKAKU ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
             >;
 
