@@ -21,29 +21,29 @@
             key-positions = <11 10>;
         };
 
-        lclk {
+        mb1 {
             bindings = <&mkp LCLK>;
             key-positions = <18 19>;
         };
 
-        rclk {
+        mb2 {
             bindings = <&mkp RCLK>;
             key-positions = <20 19>;
         };
 
-        mb {
+        mb3 {
             bindings = <&mkp MB3>;
-            key-positions = <13 12 13>;
+            key-positions = <18 20>;
         };
 
-        capslock {
-            bindings = <&caps_word>;
+        mb4 {
+            bindings = <&mkp MB4>;
             key-positions = <6 7>;
         };
 
-        esc {
-            bindings = <&kp ESCAPE>;
-            key-positions = <30 31>;
+        mb5 {
+            bindings = <&mkp MB5>;
+            key-positions = <7 8>;
         };
     };
 
