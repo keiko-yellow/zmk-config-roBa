@@ -45,6 +45,26 @@
             bindings = <&mkp MB5>;
             key-positions = <7 8>;
         };
+
+        left {
+            bindings = <&kp LEFT_ARROW>;
+            key-positions = <11 12>;
+        };
+
+        light {
+            bindings = <&kp RIGHT_ARROW>;
+            key-positions = <12 13>;
+        };
+
+        up {
+            bindings = <&kp UP_ARROW>;
+            key-positions = <1 2>;
+        };
+
+        down {
+            bindings = <&kp DOWN_ARROW>;
+            key-positions = <23 24>;
+        };
     };
 
     macros {
@@ -92,10 +112,10 @@
 
         SIGN_FUNCTION {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &kp F9      &kp N7        &kp N8        &kp N9        &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp N0      &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp RS(EXCLAMATION)
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp PERIOD  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                &trans
+&kp COLON  &kp EXCLAMATION  &kp AMPERSAND   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS                      &kp KP_COMMA  &kp N7        &kp N8        &kp N9        &trans
+&kp SLASH  &kp QUESTION     &kp EQUAL       &kp ASTERISK          &kp SLASH              &trans      &trans  &kp N0        &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans
+&trans     &kp TILDE        &kp UNDERSCORE  &kp PLUS              &kp MINUS              &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
+&trans     &trans           &trans          &trans                &trans                 &trans      &trans  &trans                                                  &trans
             >;
         };
 
