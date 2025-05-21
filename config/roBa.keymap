@@ -92,7 +92,7 @@
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
-        NG_NUM_ARROW {
+        NUM_ARROW {
             bindings = <
 &kp FSLH    &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp LS(DOUBLE_QUOTES)                                      &kp LS(DOLLAR)   &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
 &kp PERIOD  &kp NUMBER_4          &kp NUMBER_5           &kp NUMBER_6  &kp NUMBER_0           &trans             &kp PAGE_UP      &kp AMPERSAND    &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
