@@ -81,7 +81,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        layer_0 {
+        default_layout {
             bindings = <
 &kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                         &kp F        &kp W  &kp R  &kp Y  &kp P
 &mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS       &kp F7                             &kp LANGUAGE_1             &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
