@@ -83,10 +83,10 @@
 
         default_layer {
             bindings = <
-&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                    &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS  &kp F7                             &kp INT2                   &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10                            &kp INTERNATIONAL_1        &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
-&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE  &mt LANG_ZENKAKUHANKAKU ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
+&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                         &kp F        &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS       &kp F7                             &kp INT2                   &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10                            &kp INTERNATIONAL_1        &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE       &mt LANG_ZENKAKUHANKAKU ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -103,10 +103,10 @@
 
         SIGN_FUNCTION {
             bindings = <
-&kp COLON  &kp EXCLAMATION  &kp AMPERSAND   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS                      &kp KP_COMMA  &kp N7        &kp N8        &kp N9        &trans
-&kp SLASH  &kp QUESTION     &kp EQUAL       &kp ASTERISK          &kp SLASH              &trans      &trans  &kp N0        &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans
-&trans     &kp TILDE        &kp UNDERSCORE  &kp PLUS              &kp MINUS              &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
-&trans     &trans           &trans          &trans                &trans                 &trans      &trans  &trans                                                  &trans
+&kp LS(SEMICOLON)  &kp EXCLAMATION  &kp AMPERSAND   &kp ASTERISK           &kp LEFT_PARENTHESIS                      &kp KP_COMMA  &kp N7        &kp N8        &kp N9        &trans
+&kp SLASH          &kp QUESTION     &kp UNDERSCORE  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &trans      &trans  &kp N0        &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans
+&kp LS(NUMBER_5)   &kp PLUS         &kp LS(EQUAL)   &kp COLON              &kp MINUS             &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
+&trans             &trans           &trans          &trans                 &trans                &trans      &trans  &trans                                                  &trans
             >;
         };
 
