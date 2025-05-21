@@ -81,11 +81,11 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        layer_0 {
             bindings = <
 &kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                         &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS       &kp F7                             &kp INT2                   &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10                            &kp INTERNATIONAL_1        &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS       &kp F7                             &kp LANGUAGE_1             &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10                            &kp LANG2                  &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
 &kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE       &mt LANG_ZENKAKUHANKAKU ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
             >;
 
