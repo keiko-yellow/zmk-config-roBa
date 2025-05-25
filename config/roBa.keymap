@@ -72,10 +72,10 @@
 
         default_layout {
             bindings = <
-&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                                         &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS       &kp F7                             &kp LANGUAGE_1             &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10                            &kp LANG2                  &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
-&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE       &mt LANG_ZENKAKUHANKAKU ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
+&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                     &kp F        &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS       &kp F7         &kp LANGUAGE_1             &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10        &kp LANG2                  &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE       &kp ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -86,16 +86,16 @@
 &kp FSLH    &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp LS(DOUBLE_QUOTES)                                      &kp LS(DOLLAR)   &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
 &kp PERIOD  &kp NUMBER_4          &kp NUMBER_5           &kp NUMBER_6  &kp NUMBER_0           &trans             &kp PAGE_UP      &kp AMPERSAND    &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
 &kp MINUS   &kp N1                &kp NUMBER_2           &kp NUMBER_3  &kp COLON              &trans             &kp PAGE_DOWN    &kp PERCENT      &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp RC(MINUS)
-&kp LCTRL   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB       &kp SPACE              &kp LS(MINUS)      &lt 2 BACKSPACE  &lt 1 LC(ENTER)                                           &lt 3 DELETE
+&kp LCTRL   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB       &kp SPACE              &kp LS(MINUS)      &lt 2 BACKSPACE  &lt 2 LC(ENTER)                                           &lt 3 DELETE
             >;
         };
 
         SIGN_FUNCTION {
             bindings = <
-&kp LS(SEMICOLON)  &kp EXCLAMATION  &kp AMPERSAND   &kp ASTERISK           &kp LEFT_PARENTHESIS                      &kp KP_COMMA  &kp N7        &kp N8        &kp N9        &trans
-&kp SLASH          &kp QUESTION     &kp UNDERSCORE  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &trans      &trans  &kp N0        &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans
-&kp LS(NUMBER_5)   &kp PLUS         &kp LS(EQUAL)   &kp COLON              &kp MINUS             &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
-&trans             &trans           &trans          &trans                 &trans                &trans      &trans  &trans                                                  &trans
+&kp RS(PLUS)      &kp EXCLAMATION  &kp AMPERSAND   &kp ASTERISK           &kp LEFT_PARENTHESIS                      &kp LS(LESS_THAN)  &kp N7        &kp N8        &kp N9        &trans
+&kp SLASH         &kp QUESTION     &kp UNDERSCORE  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &trans      &trans  &kp N0             &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans
+&kp LS(NUMBER_5)  &kp PLUS         &kp LS(EQUAL)   &kp COLON              &kp MINUS             &trans      &trans  &kp PERIOD         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
+&trans            &trans           &trans          &trans                 &trans                &trans      &trans  &trans                                                       &trans
             >;
         };
 
