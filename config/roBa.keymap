@@ -87,10 +87,10 @@
 
         default_layout {
             bindings = <
-&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                               &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &kp MINUS    &kp F7           &kp LANGUAGE_1          &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10          &kp LANG2               &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
-&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &kp TAB    &lt 4 SPACE  &kp LS(TAB)      &mt LEFT_WIN BACKSPACE  &lt 1 ENTER                       &lt 2 PRINTSCREEN
+&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                    &kp F        &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E  &kp I          &kp A            &kp O      &kp MINUS         &kp F7           &kp LANGUAGE_1          &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10          &kp LANG2               &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &kp TAB    &lt 5 SPACE       &kp LS(TAB)      &mt LEFT_WIN BACKSPACE  &lt 1 ENTER                       &lt 2 PRINTSCREEN
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -100,7 +100,7 @@
             bindings = <
 &kp RS(COLON)    &kp EXCLAMATION  &kp LEFT_BRACKET  &kp ASTERISK           &kp ASTRK                      &kp LS(LESS_THAN)  &kp N7  &kp N8  &kp N9  &kp KP_NUMLOCK
 &kp SLASH        &kp QUESTION     &kp UNDER         &kp LS(DOUBLE_QUOTES)  &kp SLASH  &trans      &trans  &kp N0             &kp N4  &kp N5  &kp N6  &trans
-&kp LS(PERCENT)  &kp PLUS         &kp EQUAL         &kp TILDE              &kp MINUS  &trans      &trans  &kp PERIOD         &kp N1  &kp N2  &kp N3  &trans
+&kp LS(PERCENT)  &kp PLUS         &kp EQUAL         &kp COLON              &kp MINUS  &trans      &trans  &kp PERIOD         &kp N1  &kp N2  &kp N3  &trans
 &trans           &trans           &trans            &trans                 &trans     &trans      &trans  &trans                                     &trans
             >;
         };
