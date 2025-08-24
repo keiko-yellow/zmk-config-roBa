@@ -65,6 +65,16 @@
             bindings = <&kp DOWN_ARROW>;
             key-positions = <23 24>;
         };
+
+        esc {
+            bindings = <&kp ESC>;
+            key-positions = <1 0>;
+        };
+
+        alt {
+            bindings = <&kp LEFT_ALT>;
+            key-positions = <10 11>;
+        };
     };
 
     keymap {
