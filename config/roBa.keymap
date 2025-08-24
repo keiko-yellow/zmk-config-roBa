@@ -87,10 +87,10 @@
 
         default_layout {
             bindings = <
-&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                     &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &kp MINUS          &kp F7           &kp LANGUAGE_1          &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp DOUBLE_QUOTES  &kp F10          &kp LANG2               &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
-&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &kp TAB    &lt 4 SPACE        &kp LS(TAB)      &mt LEFT_WIN BACKSPACE  &lt 1 ENTER                       &lt 2 PRINTSCREEN
+&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                               &kp F        &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E  &kp I          &kp A            &kp O      &kp MINUS    &kp F7           &kp LANGUAGE_1          &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10          &kp LANG2               &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &kp TAB    &lt 4 SPACE  &kp LS(TAB)      &mt LEFT_WIN BACKSPACE  &lt 1 ENTER                       &lt 2 PRINTSCREEN
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
