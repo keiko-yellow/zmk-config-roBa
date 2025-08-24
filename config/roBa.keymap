@@ -98,10 +98,10 @@
 
         SIGN_NUM {
             bindings = <
-&kp RS(COLON)    &kp EXCLAMATION  &kp LEFT_BRACKET  &kp ASTERISK           &kp LEFT_PARENTHESIS                      &kp LS(LESS_THAN)  &kp N7  &kp N8  &kp N9  &kp KP_NUMLOCK
-&kp SLASH        &kp QUESTION     &kp UNDER         &kp LS(DOUBLE_QUOTES)  &kp SLASH             &trans      &trans  &kp N0             &kp N4  &kp N5  &kp N6  &trans
-&kp LS(PERCENT)  &kp PLUS         &kp EQUAL         &kp COLON              &kp MINUS             &trans      &trans  &kp PERIOD         &kp N1  &kp N2  &kp N3  &trans
-&trans           &trans           &trans            &trans                 &trans                &trans      &trans  &trans                                     &trans
+&kp RS(COLON)    &kp EXCLAMATION  &kp SQT    &kp ASTERISK           &kp LEFT_PARENTHESIS                      &kp LS(LESS_THAN)  &kp N7  &kp N8  &kp N9  &kp KP_NUMLOCK
+&kp SLASH        &kp QUESTION     &kp UNDER  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &trans      &trans  &kp N0             &kp N4  &kp N5  &kp N6  &trans
+&kp LS(PERCENT)  &kp PLUS         &kp EQUAL  &kp COLON              &kp MINUS             &trans      &trans  &kp PERIOD         &kp N1  &kp N2  &kp N3  &trans
+&trans           &trans           &trans     &trans                 &trans                &trans      &trans  &trans                                     &trans
             >;
         };
 
@@ -114,7 +114,7 @@
             >;
         };
 
-        MOUSE {
+        no {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
