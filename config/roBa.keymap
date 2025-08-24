@@ -76,7 +76,7 @@
             key-positions = <10 11>;
         };
 
-        del {
+        del2 {
             bindings = <&kp DEL>;
             key-positions = <8 9>;
         };
