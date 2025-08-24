@@ -73,29 +73,29 @@
         default_layout {
             bindings = <
 &kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                     &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E  &kp I          &kp A            &kp O      &lt 4 MINUS       &kp F7         &kp LANGUAGE_1             &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10        &kp LANG2                  &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
-&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE       &kp ENTER      &mt RIGHT_SHIFT BACKSPACE  &lt 2 ENTER                       &lt 3 PRINTSCREEN
+&mt LCTRL E  &kp I          &kp A            &kp O      &kp MINUS    &kp F7                 &kp LANGUAGE_1          &kp K        &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp AT_SIGN  &kp F10                &kp LANG2               &kp G        &kp D  &kp M  &kp J  &mt RSHFT B
+&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &lt 4 TAB  &lt 2 SPACE  &mt ENTER LS(TAB)      &mt LEFT_WIN BACKSPACE  &lt 1 ENTER                       &lt 3 PRINTSCREEN
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
-        NUM_ARROW {
+        SIGN_NUM {
             bindings = <
-&kp FSLH    &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp LS(DOUBLE_QUOTES)                                      &kp LS(DOLLAR)   &mkp MB4  &kp UP_ARROW  &mkp MB5         &kp KP_NUMLOCK
-&kp PERIOD  &kp NUMBER_4          &kp NUMBER_5           &kp NUMBER_6  &kp NUMBER_0           &trans             &kp PAGE_UP      &kp AMPERSAND    &mkp MB1  &mkp MB3      &mkp MB2         &kp LC(PLUS)
-&kp MINUS   &kp N1                &kp NUMBER_2           &kp NUMBER_3  &kp COLON              &trans             &kp PAGE_DOWN    &kp PERCENT      &kp LEFT  &kp DOWN      &kp RIGHT_ARROW  &kp RC(MINUS)
-&kp LCTRL   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TAB       &kp SPACE              &kp LS(MINUS)      &lt 2 BACKSPACE  &lt 2 LC(ENTER)                                           &lt 3 DELETE
+&kp RS(COLON)    &kp EXCLAMATION  &kp AMPERSAND       &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS                      &kp LS(LESS_THAN)  &kp N7        &kp N8        &kp N9        &kp KP_NUMLOCK
+&kp SLASH        &kp QUESTION     &kp EQUAL           &kp LS(DOUBLE_QUOTES)  &kp SLASH              &trans      &trans  &kp N0             &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans
+&kp LS(PERCENT)  &kp TILDE        &kp LS(UNDERSCORE)  &kp PLUS               &kp MINUS              &trans      &trans  &kp PERIOD         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
+&trans           &trans           &trans              &trans                 &trans                 &trans      &trans  &trans                                                       &trans
             >;
         };
 
-        SIGN_FUNCTION {
+        Arrow {
             bindings = <
-&kp RS(PLUS)      &kp EXCLAMATION  &kp AMPERSAND   &kp ASTERISK           &kp LEFT_PARENTHESIS                      &kp LS(LESS_THAN)  &kp N7        &kp N8        &kp N9        &trans
-&kp SLASH         &kp QUESTION     &kp UNDERSCORE  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &trans      &trans  &kp N0             &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans
-&kp LS(NUMBER_5)  &kp PLUS         &kp LS(EQUAL)   &kp COLON              &kp MINUS             &trans      &trans  &kp PERIOD         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans
-&trans            &trans           &trans          &trans                 &trans                &trans      &trans  &trans                                                       &trans
+&trans  &trans  &trans  &trans  &trans                      &trans            &kp LC(LEFT_ARROW)  &kp UP_ARROW    &kp LC(RIGHT_ARROW)  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(PLUS)      &kp LEFT_ARROW      &mkp MB3        &kp RIGHT_ARROW      &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(KP_MINUS)  &kp LC(UP_ARROW)    &kp DOWN_ARROW  &kp LC(DOWN_ARROW)   &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                     &trans
             >;
         };
 
@@ -114,26 +114,6 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        NG_ARROW {
-            bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &trans  &trans                  &trans  &trans                   &trans
-&kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &trans  &kp LS(LG(LEFT_ARROW))  &trans  &kp LS(LG(RIGHT_ARROW))  &trans
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans                  &trans  &trans                   &trans
-&trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                                                           &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
-        };
-
-        NG_SCROLL {
-            bindings = <
-&kp KP_EQUAL     &kp LC(AT_SIGN)  &kp PIPE          &kp COMMA  &trans                            &kp AT_SIGN   &kp POUND    &kp CARET      &kp LEFT_PARENTHESIS   &kp UNDERSCORE
-&kp KP_SLASH     &kp RS(AT_SIGN)  &kp GRAVE         &trans     &trans  &trans      &kp NUMBER_2  &kp AT        &kp DOLLAR   &kp AMPERSAND  &kp RIGHT_PARENTHESIS  &kp EQUAL
-&kp LS(AT_SIGN)  &kp RIGHT_BRACE  &kp TILDE         &trans     &trans  &trans      &kp N2        &kp NUMBER_3  &kp PERCENT  &kp ASTERISK   &kp MINUS              &kp LEFT_BRACKET
-&kp LA(AT_SIGN)  &kp BACKSLASH    &kp GREATER_THAN  &trans     &trans  &trans      &trans        &trans                                                           &kp RIGHT_BRACKET
             >;
         };
     };
