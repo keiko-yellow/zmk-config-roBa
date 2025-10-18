@@ -2,7 +2,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/hid_usage_jp.h>
 
 #define MOUSE 4
 #define SCROLL 5
@@ -111,7 +110,7 @@
             bindings = <
 &kp POUND    &kp EXCLAMATION  &kp CARET  &kp ASTERISK           &kp LEFT_PARENTHESIS                                     &kp KP_COMMA  &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
 &kp AT_SIGN  &kp QUESTION     &kp UNDER  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &kp LS(ASTRK)      &kp KP_NUMLOCK  &kp N0        &kp N4  &kp N5  &kp N6  &kp LS(N5)
-&kp APOS     &kp PLUS         &none      &kp COLON              &kp MINUS             &trans             &none           &kp PERIOD    &kp N1  &kp N2  &kp N3  &kp JP_BSLS
+&kp APOS     &kp PLUS         &none      &kp COLON              &kp MINUS             &trans             &none           &kp PERIOD    &kp N1  &kp N2  &kp N3  &trans
 &trans       &trans           &trans     &trans                 &trans                &trans             &trans          &trans                                &trans
             >;
         };
