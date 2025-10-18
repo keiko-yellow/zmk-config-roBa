@@ -108,10 +108,10 @@
 
         SIGN_NUM {
             bindings = <
-&kp POUND    &kp EXCLAMATION  &kp CARET        &kp ASTERISK           &kp LEFT_PARENTHESIS                                     &kp KP_COMMA  &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
-&kp AT_SIGN  &kp QUESTION     &kp UNDER        &kp LS(DOUBLE_QUOTES)  &kp SLASH             &kp LS(ASTRK)      &kp KP_NUMLOCK  &kp N0        &kp N4  &kp N5  &kp N6  &kp LS(N5)
-&kp APOS     &kp PLUS         &kp KP_SUBTRACT  &kp COLON              &kp MINUS             &trans             &kp KP_SLASH    &kp PERIOD    &kp N1  &kp N2  &kp N3  &kp LS(INT_YEN)
-&trans       &trans           &trans           &trans                 &trans                &trans             &trans          &trans                                &trans
+&kp POUND    &kp EXCLAMATION  &kp CARET            &kp ASTERISK           &kp LEFT_PARENTHESIS                                     &kp KP_COMMA  &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
+&kp AT_SIGN  &kp QUESTION     &kp UNDER            &kp LS(DOUBLE_QUOTES)  &kp SLASH             &kp LS(ASTRK)      &kp KP_NUMLOCK  &kp N0        &kp N4  &kp N5  &kp N6  &kp LS(N5)
+&kp APOS     &kp PLUS         &kp LS(KP_SUBTRACT)  &kp COLON              &kp MINUS             &trans             &kp KP_SLASH    &kp PERIOD    &kp N1  &kp N2  &kp N3  &kp BACKSLASH
+&trans       &trans           &trans               &trans                 &trans                &trans             &trans          &trans                                &trans
             >;
         };
 
