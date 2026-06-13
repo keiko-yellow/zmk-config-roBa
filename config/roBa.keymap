@@ -4,18 +4,25 @@
 #include <dt-bindings/zmk/pointing.h>
 
 // レイヤー番号の定義
+
 #define MOUSE 4
 #define SCROLL 5
 #define NUM 6
 
 &mt {
     flavor = "balanced";
-    [cite_start]quick-tap-ms = <0>; [cite: 2]
+
+    [cite_start]
+
+    quick-tap-ms = <0>;
+
+    [cite: 2]
 };
 
 / {
     behaviors {
         // オートマウスレイヤー用の挙動定義
+
         zip_temp_layer: zip_temp_layer {
             compatible = "zmk,behavior-input-processor-temp-layer";
             #input-processor-cells = <2>;
@@ -24,58 +31,142 @@
     };
 
     combos {
-        [cite_start]compatible = \"zmk,combos\"; [cite: 2]
-        [cite_start]// 既存のコンボ設定をすべて維持 [cite: 3-18]
-        del { bindings = <&kp DELETE>; key-positions = <20 21>; };
-        mb1 { bindings = <&mkp LCLK>; key-positions = <18 19>; };
-        mb2 { bindings = <&mkp RCLK>; key-positions = <20 19>; };
-        mb3 { bindings = <&mkp MB3>; key-positions = <18 20>; };
-        mb4 { bindings = <&mkp MB4>; key-positions = <6 7>; };
-        mb5 { bindings = <&mkp MB5>; key-positions = <7 8>; };
-        left { bindings = <&kp LEFT_ARROW>; key-positions = <11 12>; };
-        light { bindings = <&kp RIGHT_ARROW>; key-positions = <12 13>; };
-        up { bindings = <&kp UP_ARROW>; key-positions = <1 2>; };
-        down { bindings = <&kp DOWN_ARROW>; key-positions = <23 24>; };
-        esc { bindings = <&kp ESC>; key-positions = <1 0>; };
-        alt { bindings = <&kp LEFT_ALT>; key-positions = <10 11>; };
-        del2 { bindings = <&kp DEL>; key-positions = <8 9>; };
-        hannkaku { bindings = <&kp LANG_ZENKAKUHANKAKU>; key-positions = <20 21>; };
-        f4 { bindings = <&kp F4>; key-positions = <32 33>; };
+        [cite_start]compatible = \"
+
+        zmk,combos = ";
+
+        [
+
+        cite: del {
+            bindings = <&kp DELETE>;
+            key-positions = <20 21>;
+        };
+
+        mb1 {
+            bindings = <&mkp LCLK>;
+            key-positions = <18 19>;
+        };
+
+        mb2 {
+            bindings = <&mkp RCLK>;
+            key-positions = <20 19>;
+        };
+
+        mb3 {
+            bindings = <&mkp MB3>;
+            key-positions = <18 20>;
+        };
+
+        mb4 {
+            bindings = <&mkp MB4>;
+            key-positions = <6 7>;
+        };
+
+        mb5 {
+            bindings = <&mkp MB5>;
+            key-positions = <7 8>;
+        };
+
+        left {
+            bindings = <&kp LEFT_ARROW>;
+            key-positions = <11 12>;
+        };
+
+        light {
+            bindings = <&kp RIGHT_ARROW>;
+            key-positions = <12 13>;
+        };
+
+        up {
+            bindings = <&kp UP_ARROW>;
+            key-positions = <1 2>;
+        };
+
+        down {
+            bindings = <&kp DOWN_ARROW>;
+            key-positions = <23 24>;
+        };
+
+        esc {
+            bindings = <&kp ESC>;
+            key-positions = <1 0>;
+        };
+
+        alt {
+            bindings = <&kp LEFT_ALT>;
+            key-positions = <10 11>;
+        };
+
+        del2 {
+            bindings = <&kp DEL>;
+            key-positions = <8 9>;
+        };
+
+        hannkaku {
+            bindings = <&kp LANG_ZENKAKUHANKAKU>;
+            key-positions = <20 21>;
+        };
+
+        f4 {
+            bindings = <&kp F4>;
+            key-positions = <32 33>;
+        };
     };
 
     keymap {
-        [cite_start]compatible = "zmk,keymap"; [cite: 19]
+        [cite_start]
 
-        [cite_start]default_layout { // Layer 0 [cite: 19]
+        compatible = "zmk,keymap";
+
+        [
+
+        cite: default_layout {
             bindings = <
-[cite_start]&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                     &kp F        &kp W  &kp R  &kp Y  &kp P [cite: 20]
-[cite_start]&mt LCTRL E  &kp I          &kp A            &kp O      &kp MINUS         &kp F7           &kp LANGUAGE_1           &kp K        &kp T  &kp N  &kp S  &mt RCTRL H [cite: 21]
-[cite_start]&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10          &kp LANG2                &kp G        &kp D  &kp M  &kp J  &mt RSHFT B [cite: 21]
-[cite_start]&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &kp TAB    &lt 5 SPACE       &kp LS(TAB)      &mt LEFT_WIN BACKSPACE  &lt 1 ENTER                         &lt 2 PRINTSCREEN [cite: 22]
+&kp Q        &kp L          &kp U            &kp COMMA  &kp DOT                                                    &kp F                  &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E  &kp I          &kp A            &kp O      &kp MINUS         &kp F7           &kp LANGUAGE_1          &kp K                  &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LSHFT Z  &kp X          &kp C            &kp V      &kp LEFT_BRACKET  &kp F10          &kp LANG2               &kp G                  &kp D  &kp M  &kp J  &mt RSHFT B
+&kp ESCAPE   &mt LCTRL F10  &mt LEFT_ALT F7  &kp TAB    &lt 5 SPACE       &kp LS(TAB)      &mt LEFT_WIN BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 F15
             >;
-            [cite_start]sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>; [cite: 23]
+
+            [cite_start]
+
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+
+            [cite: 23]
         };
 
-        [cite_start]SIGN_NUM { bindings = < // Layer 1 [cite: 24-27]
-&kp POUND    &kp EXCLAMATION  &kp CARET  &kp ASTERISK           &kp LEFT_PARENTHESIS                                     &kp KP_COMMA  &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
-&kp AT_SIGN  &kp QUESTION      &kp UNDER  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &kp LS(ASTRK)      &kp KP_NUMLOCK  &kp N0        &kp N4  &kp N5  &kp N6  &kp LS(N5)
-&kp APOS      &kp PLUS          &none      &kp COLON              &kp MINUS             &trans             &none            &kp PERIOD    &kp N1  &kp N2  &kp N3  &trans
-&trans        &trans            &trans     &trans                 &trans                &trans             &trans           &trans                                &trans
-            >; };
+        [cite_start]
 
-        [cite_start]layer_BT_SEL0-4 { bindings = < // Layer 2 [cite: 28-30]
+        SIGN_NUM {
+            bindings = <
+&kp POUND    &kp EXCLAMATION  &kp CARET  &kp ASTERISK           &kp LEFT_PARENTHESIS                                     &kp KP_COMMA  &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
+&kp AT_SIGN  &kp QUESTION     &kp UNDER  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &kp LS(ASTRK)      &kp KP_NUMLOCK  &kp N0        &kp N4  &kp N5  &kp N6  &kp LS(N5)
+&kp APOS     &kp PLUS         &none      &kp COLON              &kp MINUS             &trans             &none           &kp PERIOD    &kp N1  &kp N2  &kp N3  &trans
+&trans       &trans           &trans     &trans                 &trans                &trans             &trans          &trans                                &trans
+            >;
+        };
+
+        [cite_start]
+
+        layer_BT_SEL0-4 {
+            bindings = <
 &trans  &trans  &trans  &trans  &trans                      &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans          &trans        &trans        &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans          &trans        &trans        &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &bt BT_CLR_ALL                                            &trans
-            >; };
+            >;
+        };
 
-        [cite_start]no { bindings = < // Layer 3 [cite: 31-32]
+        [cite_start]
+
+        no {
+            bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                  &trans
-            >; };
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+        };
 
         [cite_start]// マウスレイヤー (MOUSE: 4) [cite: 33-34]
         layer_5 {
@@ -93,15 +184,18 @@
 &trans  &trans  &trans  &trans  &trans                      &trans            &kp LC(LEFT_ARROW)  &kp UP_ARROW    &kp LC(RIGHT_ARROW)  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(PLUS)      &kp LEFT_ARROW      &mkp MB3        &kp RIGHT_ARROW      &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(KP_MINUS)  &kp LC(UP_ARROW)    &kp DOWN_ARROW  &kp LC(DOWN_ARROW)   &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                    &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                     &trans
             >;
         };
     };
 
     // トラボ検知のリスナー設定
+
     trackball_listener {
         status = "okay";
+
         // 動きを検知したらMOUSE(4)へ。800ms(0.8秒)後に復帰
+
         input-processors = <&zip_temp_layer MOUSE 800>;
     };
 };
@@ -119,7 +213,9 @@
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
+
         // エラーの原因「motion-gpios」を定義 (Xiao BLE D3 = P0.05)
+
         motion-gpios = <&gpio0 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         zephyr,axis-x = <&input_rel_x>;
         zephyr,axis-y = <&input_rel_y>;
@@ -129,16 +225,20 @@
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 15)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
+            psels =
+                <NRF_PSEL(SPIM_SCK, 1, 13)>,
+                <NRF_PSEL(SPIM_MOSI, 1, 15)>,
+                <NRF_PSEL(SPIM_MISO, 1, 14)>;
         };
     };
+
     spi0_sleep: spi0_sleep {
         group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 1, 13)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 15)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
+            psels =
+                <NRF_PSEL(SPIM_SCK, 1, 13)>,
+                <NRF_PSEL(SPIM_MOSI, 1, 15)>,
+                <NRF_PSEL(SPIM_MISO, 1, 14)>;
+
             low-power-enable;
         };
     };
