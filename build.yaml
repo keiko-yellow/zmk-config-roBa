@@ -24,5 +24,5 @@ include:
   - board: xiao_ble//zmk
     shield: roBa_L
 
-  - board: xiao_ble
+  - board: xiao_ble//zmk
     shield: settings_reset
