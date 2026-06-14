@@ -99,19 +99,10 @@
 &kp Q           &kp L     &kp U    &kp COMMA  &kp DOT                                              &kp F                  &kp W  &kp R  &kp Y  &kp P
 &mt LCTRL E     &kp I     &kp A    &kp O      &kp MINUS         &kp F7            &kp LANGUAGE_1   &kp K                  &kp T  &kp N  &kp S  &mt RCTRL H
 &mt LEFT_ALT Z  &kp X     &kp C    &kp V      &kp LEFT_BRACKET  &kp F10           &kp LANG2        &kp G                  &kp D  &kp M  &kp J  &kp B
-&kp LEFT_ALT    &kp HOME  &kp END  &lt 1 TAB  &mt LSHIFT SPACE  &lt 3 ESCAPE      &lt 1 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 F15
+&kp LEFT_ALT    &kp HOME  &kp END  &lt 5 TAB  &mt LSHIFT SPACE  &lt 2 ESCAPE      &lt 5 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 1 F15
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
-        };
-
-        sign_num {
-            bindings = <
-&kp POUND    &kp EXCLAMATION  &kp CARET  &kp ASTERISK           &kp LEFT_PARENTHESIS                                     &kp KP_COMMA  &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
-&kp AT_SIGN  &kp QUESTION     &kp UNDER  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &kp LS(ASTRK)      &kp KP_NUMLOCK  &kp N0        &kp N4  &kp N5  &kp N6  &kp LS(N5)
-&kp APOS     &kp PLUS         &none      &kp COLON              &kp MINUS             &trans             &none           &kp PERIOD    &kp N1  &kp N2  &kp N3  &trans
-&trans       &trans           &trans     &kp LG(D)              &kp LEFT_WIN          &trans             &trans          &trans                                &trans
-            >;
         };
 
         layer_bt_sel0_4 {
@@ -147,6 +138,15 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(PLUS)      &kp LEFT_ARROW      &mkp MB3        &kp RIGHT_ARROW      &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LC(KP_MINUS)  &kp LC(UP_ARROW)    &kp DOWN_ARROW  &kp LC(DOWN_ARROW)   &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                     &trans
+            >;
+        };
+
+        sign_num {
+            bindings = <
+&kp POUND    &kp EXCLAMATION  &kp CARET  &kp ASTERISK           &kp LEFT_PARENTHESIS                                     &kp KP_COMMA  &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
+&kp AT_SIGN  &kp QUESTION     &kp UNDER  &kp LS(DOUBLE_QUOTES)  &kp SLASH             &kp LS(ASTRK)      &kp KP_NUMLOCK  &kp N0        &kp N4  &kp N5  &kp N6  &kp LS(N5)
+&kp APOS     &kp PLUS         &none      &kp COLON              &kp MINUS             &trans             &none           &kp PERIOD    &kp N1  &kp N2  &kp N3  &trans
+&trans       &trans           &trans     &kp LG(D)              &kp LEFT_WIN          &trans             &trans          &trans                                &trans
             >;
         };
     };
