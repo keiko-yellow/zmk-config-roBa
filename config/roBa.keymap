@@ -13,14 +13,6 @@
 };
 
 / {
-    behaviors {
-        zip_temp_layer: zip_temp_layer {
-            compatible = "zmk,behavior-input-processor-temp-layer";
-            #input-processor-cells = <2>;
-            trackball-only;
-        };
-    };
-
     combos {
         compatible = "zmk,combos";
 
