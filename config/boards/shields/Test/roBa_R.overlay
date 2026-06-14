@@ -70,3 +70,6 @@
         zephyr,axis-y = <INPUT_REL_Y>;
     };
 };
+&uicr {
+nfct-pins-as-gpios;
+};
