@@ -180,8 +180,8 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         motion-gpios = <&gpio0 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        zephyr,axis-x = <INPUT_REL_X>;
-        zephyr,axis-y = <INPUT_REL_Y>;
+        zephyr,axis-x = <&input_rel_x>;
+        zephyr,axis-y = <&input_rel_y>;
     };
 };
 
@@ -207,3 +207,14 @@
     };
 };
 
+/ {
+    input_rel_x: input_rel_x {
+        compatible = "zephyr,input-rel-axis";
+        axis = <INPUT_REL_X>;
+    };
+
+    input_rel_y: input_rel_y {
+        compatible = "zephyr,input-rel-axis";
+        axis = <INPUT_REL_Y>;
+    };
+};
