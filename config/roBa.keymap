@@ -48,9 +48,30 @@
      * クリック用途としてレイヤーを維持する。通常入力時は、
      * マウス用コンボをMOUSE限定にしたため待ち時間が発生しない。
      */
+    motion_threshold: motion_threshold {
+        compatible = "zmk,input-processor-motion-threshold";
+        #input-processor-cells = <1>;
+
+        /*
+         * X/Yの累積移動量が30に達するまで、
+         * 後段の標準オートマウスへイベントを渡さない。
+         */
+        threshold = <30>;
+
+        /*
+         * 200ms動かなければ累積移動量を0へ戻す。
+         */
+        reset-timeout-ms = <200>;
+    };
+
     auto_mouse_layer: auto_mouse_layer {
         compatible = "zmk,input-processor-temp-layer";
         #input-processor-cells = <2>;
+
+        /*
+         * MB1～MB5に使うW・R・Y・T・Nはマウスレイヤーを維持。
+         * それ以外のキーを押すと即通常レイヤーへ戻る。
+         */
         excluded-positions = <6 7 8 18 19>;
     };
 
@@ -146,7 +167,7 @@ del2 {
         /*
          * S + H → 半角／全角
          *
-         * 元設定で同じ20・21に存在したDeleteコンボは削除し
+         * 元設定で同じ20・21に存在したDeleteコンボは削除し、
          * 競合しないようにしている。
          */
         hankaku {
@@ -362,7 +383,7 @@ del2 {
 
     /*
      * 通常時：
-     * トラックボール操作でMOUSEレイヤー（4）を一時的に有効化する。
+     * 累積移動量30に達したイベントだけを標準オートマウスへ渡し、MOUSEレイヤー（4）を有効化する。
      * 最後のトラックボール入力から30秒後に自動解除する。
      *
      * MB1～MB5以外の物理キーを押した場合は、
@@ -376,7 +397,10 @@ del2 {
     trackball_listener {
         status = "okay";
 
-        input-processors = <&auto_mouse_layer MOUSE 30000>;
+        input-processors = <
+        &motion_threshold MOUSE
+        &auto_mouse_layer MOUSE 30000
+    >;
 
         sign_num_scroll {
             layers = <1>;
