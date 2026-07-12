@@ -1,0 +1,27 @@
+description: Gate relative pointer movement until a cumulative threshold is reached
+
+compatible: "zmk,input-processor-motion-threshold"
+
+include: base.yaml
+
+properties:
+  "#input-processor-cells":
+    type: int
+    required: true
+    const: 1
+
+  track-remainders:
+    type: boolean
+
+  threshold:
+    type: int
+    required: true
+    description: Cumulative absolute X and Y movement required before an event is passed
+
+  reset-timeout-ms:
+    type: int
+    default: 200
+    description: Idle period after which accumulated movement is reset
+
+input-processor-cells:
+  - layer
