@@ -235,10 +235,7 @@ del2 {
                 &lt 3 ESCAPE           &lt 1 BACKSPACE         &mt RIGHT_SHIFT ENTER   &lt 2 F15
             >;
 
-            sensor-bindings = <
-                &inc_dec_kp PG_UP PAGE_DOWN
-                &inc_dec_kp PG_UP PAGE_DOWN
-            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         /*
@@ -262,10 +259,7 @@ del2 {
             >;
         
 
-            sensor-bindings = <
-                &inc_dec_kp PG_UP PAGE_DOWN
-                &inc_dec_kp PG_UP PAGE_DOWN
-            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         /*
@@ -289,10 +283,7 @@ del2 {
             >;
         
 
-            sensor-bindings = <
-                &inc_dec_kp PG_UP PAGE_DOWN
-                &inc_dec_kp PG_UP PAGE_DOWN
-            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         /*
@@ -316,10 +307,7 @@ del2 {
             >;
         
 
-            sensor-bindings = <
-                &inc_dec_kp PG_UP PAGE_DOWN
-                &inc_dec_kp PG_UP PAGE_DOWN
-            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         /*
@@ -344,10 +332,7 @@ del2 {
             >;
         
 
-            sensor-bindings = <
-                &inc_dec_kp PG_UP PAGE_DOWN
-                &inc_dec_kp PG_UP PAGE_DOWN
-            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
         /*
@@ -371,10 +356,7 @@ del2 {
             >;
         
 
-            sensor-bindings = <
-                &inc_dec_kp PG_UP PAGE_DOWN
-                &inc_dec_kp PG_UP PAGE_DOWN
-            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
     };
 
