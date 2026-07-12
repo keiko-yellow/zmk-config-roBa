@@ -60,8 +60,8 @@
         /*
          * 通常コンボは100ms。
          * 効きにくいCV・DM・SHは160ms。
-         * MB3・MB4・MB5コンボはMOUSEレイヤーだけで有効にし、
-         * 通常入力時のT・N・W・R・Yをコンボ待ちさせない。
+         * MB3はMOUSEレイヤー限定。
+         * MB4・MB5および文字コンボは、オートマウス中でも使えるよう全レイヤーで有効。
          */
 
         /*
@@ -90,49 +90,42 @@
             bindings = <&kp LEFT_ARROW>;
             key-positions = <11 12>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
 
         right {
             bindings = <&kp RIGHT_ARROW>;
             key-positions = <12 13>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
 
         up {
             bindings = <&kp UP_ARROW>;
             key-positions = <1 2>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
 
         down {
             bindings = <&kp DOWN_ARROW>;
             key-positions = <23 24>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
 
         esc {
             bindings = <&kp ESC>;
             key-positions = <1 0>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
 
         alt {
             bindings = <&kp LEFT_ALT>;
             key-positions = <10 11>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
 
         del2 {
             bindings = <&kp DEL>;
             key-positions = <8 9>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
 
         /*
@@ -143,7 +136,6 @@
             bindings = <&kp LC(BACKSPACE)>;
             key-positions = <24 25>;
             timeout-ms = <160>;
-            layers = <BASE>;
         };
 
         /*
@@ -154,7 +146,6 @@
             bindings = <&kp LC(DELETE)>;
             key-positions = <30 31>;
             timeout-ms = <160>;
-            layers = <BASE>;
         };
 
         /*
@@ -167,14 +158,61 @@
             bindings = <&kp LANG_ZENKAKUHANKAKU>;
             key-positions = <20 21>;
             timeout-ms = <160>;
-            layers = <BASE>;
+        };
+
+
+        /*
+         * E + I → F10
+         * Mod-Tapキーを含むため長めに判定。
+         */
+        ei_f10 {
+            bindings = <&kp F10>;
+            key-positions = <10 11>;
+            timeout-ms = <160>;
+        };
+
+        /* Z + X → F7 */
+        zx_f7 {
+            bindings = <&kp F7>;
+            key-positions = <22 23>;
+            timeout-ms = <120>;
+        };
+
+        /* X + V → Home */
+        xv_home {
+            bindings = <&kp HOME>;
+            key-positions = <23 25>;
+            timeout-ms = <120>;
+        };
+
+        /* I + O → Windows音声入力（Win + H） */
+        io_win_h {
+            bindings = <&kp LG(H)>;
+            key-positions = <11 13>;
+            timeout-ms = <160>;
+        };
+
+        /*
+         * M + J → Delete
+         * Keyball44で長めに設定されているコンボ。
+         */
+        mj_delete {
+            bindings = <&kp DELETE>;
+            key-positions = <31 32>;
+            timeout-ms = <160>;
+        };
+
+        /* D + J → End */
+        dj_end {
+            bindings = <&kp END>;
+            key-positions = <30 32>;
+            timeout-ms = <120>;
         };
 
         f4 {
             bindings = <&kp F4>;
             key-positions = <32 33>;
             timeout-ms = <100>;
-            layers = <BASE>;
         };
     };
 
