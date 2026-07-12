@@ -17,6 +17,7 @@
  * 4 = mouse
  * 5 = arrow
  */
+#define BASE 0
 #define MOUSE 4
 #define SCROLL 5
 #define NUM 6
@@ -32,101 +33,106 @@
      * → レイヤー4を有効化
      *
      * トラックボールを止める
-     * → 650ms後にレイヤー4を解除
+     * → 30秒後にレイヤー4を解除
      *
      * MB1～MB5を出すために使用する物理キーだけは、
      * 押してもオートマウスレイヤーを解除しない。
      *
-     * 6・7・8   = MB4 / MB5コンボに使用
-     * 18・19・20 = MB1 / MB2 / MB3コンボに使用
+     * 6・7・8 = MB4 / MB5コンボに使用
+     * 18・19  = MB1 / MB2の単打、およびMB3コンボに使用
      *
      * それ以外のキーを押すと、
      * クリック後であってもオートマウスレイヤーを即時解除する。
+     *
+     * T位置（18）はMOUSEレイヤー中はMB1、N位置（19）はMB2。
+     * クリック用途としてレイヤーを維持する。通常入力時は、
+     * マウス用コンボをMOUSE限定にしたため待ち時間が発生しない。
      */
     auto_mouse_layer: auto_mouse_layer {
         compatible = "zmk,input-processor-temp-layer";
         #input-processor-cells = <2>;
-        excluded-positions = <6 7 8 18 19 20>;
+        excluded-positions = <6 7 8 18 19>;
     };
 
     combos {
         compatible = "zmk,combos";
 
         /*
-         * 通常コンボはKeyball44と同じ80ms。
-         * CV・DM・SHは認識しやすいようKeyball44と同じ140ms。
+         * 通常コンボは100ms。
+         * 効きにくいCV・DM・SHは160ms。
+         * MB3・MB4・MB5コンボはMOUSEレイヤーだけで有効にし、
+         * 通常入力時のT・N・W・R・Yをコンボ待ちさせない。
          */
 
-        mb1 {
-            bindings = <&mkp LCLK>;
-            key-positions = <18 19>;
-            timeout-ms = <80>;
-        };
-
-        mb2 {
-            bindings = <&mkp RCLK>;
-            key-positions = <20 19>;
-            timeout-ms = <80>;
-        };
-
+        /*
+         * MOUSEレイヤーでは、T位置（18）の単打がMB1、
+         * N位置（19）の単打がMB2。
+         * MB3～MB5だけをコンボで出す。
+         */
         mb3 {
             bindings = <&mkp MB3>;
-            key-positions = <18 20>;
-            timeout-ms = <80>;
+            key-positions = <18 19>;
+            timeout-ms = <100>;
+            layers = <MOUSE>;
         };
 
         mb4 {
             bindings = <&mkp MB4>;
             key-positions = <6 7>;
-            timeout-ms = <80>;
-        };
+            timeout-ms = <100>;};
 
         mb5 {
             bindings = <&mkp MB5>;
             key-positions = <7 8>;
-            timeout-ms = <80>;
-        };
+            timeout-ms = <100>;};
 
         left {
             bindings = <&kp LEFT_ARROW>;
             key-positions = <11 12>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
 
         right {
             bindings = <&kp RIGHT_ARROW>;
             key-positions = <12 13>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
 
         up {
             bindings = <&kp UP_ARROW>;
             key-positions = <1 2>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
 
         down {
             bindings = <&kp DOWN_ARROW>;
             key-positions = <23 24>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
 
         esc {
             bindings = <&kp ESC>;
             key-positions = <1 0>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
 
         alt {
             bindings = <&kp LEFT_ALT>;
             key-positions = <10 11>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
 
         del2 {
             bindings = <&kp DEL>;
             key-positions = <8 9>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
 
         /*
@@ -136,7 +142,8 @@
         cv_ctrl_backspace {
             bindings = <&kp LC(BACKSPACE)>;
             key-positions = <24 25>;
-            timeout-ms = <140>;
+            timeout-ms = <160>;
+            layers = <BASE>;
         };
 
         /*
@@ -146,7 +153,8 @@
         dm_ctrl_delete {
             bindings = <&kp LC(DELETE)>;
             key-positions = <30 31>;
-            timeout-ms = <140>;
+            timeout-ms = <160>;
+            layers = <BASE>;
         };
 
         /*
@@ -158,13 +166,15 @@
         hankaku {
             bindings = <&kp LANG_ZENKAKUHANKAKU>;
             key-positions = <20 21>;
-            timeout-ms = <140>;
+            timeout-ms = <160>;
+            layers = <BASE>;
         };
 
         f4 {
             bindings = <&kp F4>;
             key-positions = <32 33>;
-            timeout-ms = <80>;
+            timeout-ms = <100>;
+            layers = <BASE>;
         };
     };
 
@@ -305,10 +315,10 @@
     /*
      * 通常時：
      * トラックボール操作でMOUSEレイヤー（4）を一時的に有効化する。
-     * 最後のトラックボール入力から650ms後に自動解除する。
+     * 最後のトラックボール入力から30秒後に自動解除する。
      *
      * MB1～MB5以外の物理キーを押した場合は、
-     * 650msを待たずに即時解除する。
+     * 30秒を待たずに即時解除する。
      *
      * sign_num（レイヤー1）を有効にしている間：
      * トラックボールのX/Y移動を横・縦スクロールへ変換する。
@@ -318,7 +328,7 @@
     trackball_listener {
         status = "okay";
 
-        input-processors = <&auto_mouse_layer MOUSE 650>;
+        input-processors = <&auto_mouse_layer MOUSE 30000>;
 
         sign_num_scroll {
             layers = <1>;
