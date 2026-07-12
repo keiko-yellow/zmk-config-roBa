@@ -1,4 +1,7 @@
-name: roBa
+name: roba_motion_threshold
 build:
+  cmake: .
+  kconfig: Kconfig
   settings:
     board_root: config
+    dts_root: .
