@@ -55,7 +55,7 @@
          * X/Yの累積移動量が30に達するまで、
          * 後段の標準オートマウスへイベントを渡さない。
          */
-        threshold = <30>;
+        threshold = <200>;
 
         /*
          * 200ms動かなければ累積移動量を0へ戻す。
@@ -78,8 +78,7 @@
         compatible = "zmk,combos";
 
         /*
-         * 通常コンボは100ms。
-         * 効きにくいCV・DM・SH・EI・IO・MJは160ms。
+         * すべてのコンボ判定を80msに統一。
          * MB3はMOUSEレイヤー限定。
          * MB4・MB5は数字レイヤー以外で有効。
          * 文字コンボは全レイヤーで有効。
@@ -93,7 +92,7 @@
         mb3 {
             bindings = <&mkp MB3>;
             key-positions = <18 19>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
             layers = <MOUSE>;
         };
 
@@ -104,7 +103,7 @@
         mb4 {
             bindings = <&mkp MB4>;
             key-positions = <6 7>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
             layers = <0 2 3 4 5>;
         };
 
@@ -115,44 +114,44 @@
         mb5 {
             bindings = <&mkp MB5>;
             key-positions = <7 8>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
             layers = <0 2 3 4 5>;
         };
 
         left {
             bindings = <&kp LEFT_ARROW>;
             key-positions = <11 12>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
         };
 
         right {
             bindings = <&kp RIGHT_ARROW>;
             key-positions = <12 13>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
         };
 
         up {
             bindings = <&kp UP_ARROW>;
             key-positions = <1 2>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
         };
 
         down {
             bindings = <&kp DOWN_ARROW>;
             key-positions = <23 24>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
         };
 
         esc {
             bindings = <&kp ESC>;
             key-positions = <1 0>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
         };
 
         del2 {
             bindings = <&kp DEL>;
             key-positions = <8 9>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
         };
 
         /*
@@ -162,7 +161,7 @@
         cv_ctrl_backspace {
             bindings = <&kp LC(BACKSPACE)>;
             key-positions = <24 25>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
         };
 
         /*
@@ -173,7 +172,7 @@
         dm_ctrl_delete {
             bindings = <&kp LC(DELETE)>;
             key-positions = <30 31>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
         };
 
         /*
@@ -185,7 +184,7 @@
         hankaku {
             bindings = <&kp GRAVE>;
             key-positions = <20 21>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
         };
 
         /*
@@ -195,28 +194,28 @@
         ei_f10 {
             bindings = <&kp F10>;
             key-positions = <10 11>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
         };
 
         /* Z + X → F7 */
         zx_f7 {
             bindings = <&kp F7>;
             key-positions = <22 23>;
-            timeout-ms = <120>;
+            timeout-ms = <80>;
         };
 
         /* X + V → Home */
         xv_home {
             bindings = <&kp HOME>;
             key-positions = <23 25>;
-            timeout-ms = <120>;
+            timeout-ms = <80>;
         };
 
         /* I + O → Windows音声入力（Win + H） */
         io_win_h {
             bindings = <&kp LG(H)>;
             key-positions = <11 13>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
         };
 
         /*
@@ -227,14 +226,14 @@
         mj_delete {
             bindings = <&kp DELETE>;
             key-positions = <31 32>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
         };
 
         /* D + J → End */
         dj_end {
             bindings = <&kp END>;
             key-positions = <30 32>;
-            timeout-ms = <120>;
+            timeout-ms = <80>;
         };
 
         /*
@@ -252,7 +251,7 @@
         num_46_equal {
             bindings = <&kp UNDER>;
             key-positions = <18 20>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
             layers = <NUM>;
         };
 
@@ -260,7 +259,7 @@
         num_78_multiply {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <6 7>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
             layers = <NUM>;
         };
 
@@ -268,7 +267,7 @@
         num_89_divide {
             bindings = <&kp SLASH>;
             key-positions = <7 8>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
             layers = <NUM>;
         };
 
@@ -276,7 +275,7 @@
         num_45_plus {
             bindings = <&kp COLON>;
             key-positions = <18 19>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
             layers = <NUM>;
         };
 
@@ -284,14 +283,14 @@
         num_56_minus {
             bindings = <&kp MINUS>;
             key-positions = <19 20>;
-            timeout-ms = <160>;
+            timeout-ms = <80>;
             layers = <NUM>;
         };
 
         f4 {
             bindings = <&kp F4>;
             key-positions = <32 33>;
-            timeout-ms = <100>;
+            timeout-ms = <80>;
         };
     };
 
@@ -403,7 +402,7 @@
 
         input-processors = <
             &motion_threshold MOUSE
-            &auto_mouse_layer MOUSE 30000
+            &auto_mouse_layer MOUSE 0
         >;
 
         sign_num_scroll {
