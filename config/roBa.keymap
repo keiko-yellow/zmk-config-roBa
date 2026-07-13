@@ -402,6 +402,7 @@
 
         input-processors = <
             &motion_threshold MOUSE
+            &zip_xy_scaler 9 10
             &auto_mouse_layer MOUSE 0
         >;
 
