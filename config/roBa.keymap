@@ -68,10 +68,11 @@
         #input-processor-cells = <2>;
 
         /*
-         * MB1～MB5に使うW・R・Y・T・Nはマウスレイヤーを維持。
+         * MB1～MB5に使うW・R・Y・T・Nと、
+         * Ctrlクリックに使う左右Ctrl位置はマウスレイヤーを維持。
          * それ以外のキーを押すと即通常レイヤーへ戻る。
          */
-        excluded-positions = <6 7 8 18 19>;
+        excluded-positions = <6 7 8 10 18 19 21>;
     };
 
     combos {
