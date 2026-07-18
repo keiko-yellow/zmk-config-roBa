@@ -157,7 +157,7 @@
         };
 
         del2 {
-            bindings = <&kp DEL>;
+            bindings = <&kp ESCAPE>;
             key-positions = <8 9>;
             timeout-ms = <80>;
         };
