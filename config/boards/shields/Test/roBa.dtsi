@@ -14,52 +14,57 @@
 
         // w h x y rot rx ry
         keys = <
-            &key_physical_attrs 100 100    0  37     0    0   0
-            &key_physical_attrs 100 100  100  12     0    0   0
-            &key_physical_attrs 100 100  200   0     0    0   0
-            &key_physical_attrs 100 100  300  12     0    0   0
-            &key_physical_attrs 100 100  400  24     0    0   0
-            &key_physical_attrs 100 100  800  24     0    0   0
-            &key_physical_attrs 100 100  900  12     0    0   0
-            &key_physical_attrs 100 100 1000   0     0    0   0
-            &key_physical_attrs 100 100 1100  12     0    0   0
-            &key_physical_attrs 100 100 1200  37     0    0   0
+            &key_physical_attrs 100 100 0 37 0 0 0
+            &key_physical_attrs 100 100 100 12 0 0 0
+            &key_physical_attrs 100 100 200 0 0 0 0
+            &key_physical_attrs 100 100 300 12 0 0 0
+            &key_physical_attrs 100 100 400 24 0 0 0
 
-            &key_physical_attrs 100 100    0 137     0    0   0
-            &key_physical_attrs 100 100  100 112     0    0   0
-            &key_physical_attrs 100 100  200 100     0    0   0
-            &key_physical_attrs 100 100  300 112     0    0   0
-            &key_physical_attrs 100 100  400 124     0    0   0
-            &key_physical_attrs 100 100  500 137     0    0   0
-            &key_physical_attrs 100 100  700 137     0    0   0
-            &key_physical_attrs 100 100  800 124     0    0   0
-            &key_physical_attrs 100 100  900 112     0    0   0
-            &key_physical_attrs 100 100 1000 100     0    0   0
-            &key_physical_attrs 100 100 1100 112     0    0   0
-            &key_physical_attrs 100 100 1200 137     0    0   0
+            &key_physical_attrs 100 100 800 24 0 0 0
+            &key_physical_attrs 100 100 900 12 0 0 0
+            &key_physical_attrs 100 100 1000 0 0 0 0
+            &key_physical_attrs 100 100 1100 12 0 0 0
+            &key_physical_attrs 100 100 1200 37 0 0 0
 
-            &key_physical_attrs 100 100    0 237     0    0   0
-            &key_physical_attrs 100 100  100 212     0    0   0
-            &key_physical_attrs 100 100  200 200     0    0   0
-            &key_physical_attrs 100 100  300 212     0    0   0
-            &key_physical_attrs 100 100  400 224     0    0   0
-            &key_physical_attrs 100 100  500 237     0    0   0
-            &key_physical_attrs 100 100  700 237     0    0   0
-            &key_physical_attrs 100 100  800 224     0    0   0
-            &key_physical_attrs 100 100  900 212     0    0   0
-            &key_physical_attrs 100 100 1000 200     0    0   0
-            &key_physical_attrs 100 100 1100 212     0    0   0
-            &key_physical_attrs 100 100 1200 237     0    0   0
+            &key_physical_attrs 100 100 0 137 0 0 0
+            &key_physical_attrs 100 100 100 112 0 0 0
+            &key_physical_attrs 100 100 200 100 0 0 0
+            &key_physical_attrs 100 100 300 112 0 0 0
+            &key_physical_attrs 100 100 400 124 0 0 0
+            &key_physical_attrs 100 100 500 137 0 0 0
 
-            &key_physical_attrs 100 100    0 337     0    0   0
-            &key_physical_attrs 100 100  100 312     0    0   0
-            &key_physical_attrs 100 100  200 300     0    0   0
-            &key_physical_attrs 100 100  325 337     0    0   0
-            &key_physical_attrs 100 100  437 350  1000  437 350
-            &key_physical_attrs 100 100  550 387  2000  550 387
-            &key_physical_attrs 100 100  650 387 (-2000) 650 387
-            &key_physical_attrs 100 100  763 350 (-1000)   0 350
-            &key_physical_attrs 100 100 1200 337     0    0   0
+            &key_physical_attrs 100 100 700 137 0 0 0
+            &key_physical_attrs 100 100 800 124 0 0 0
+            &key_physical_attrs 100 100 900 112 0 0 0
+            &key_physical_attrs 100 100 1000 100 0 0 0
+            &key_physical_attrs 100 100 1100 112 0 0 0
+            &key_physical_attrs 100 100 1200 137 0 0 0
+
+            &key_physical_attrs 100 100 0 237 0 0 0
+            &key_physical_attrs 100 100 100 212 0 0 0
+            &key_physical_attrs 100 100 200 200 0 0 0
+            &key_physical_attrs 100 100 300 212 0 0 0
+            &key_physical_attrs 100 100 400 224 0 0 0
+            &key_physical_attrs 100 100 500 237 0 0 0
+
+            &key_physical_attrs 100 100 700 237 0 0 0
+            &key_physical_attrs 100 100 800 224 0 0 0
+            &key_physical_attrs 100 100 900 212 0 0 0
+            &key_physical_attrs 100 100 1000 200 0 0 0
+            &key_physical_attrs 100 100 1100 212 0 0 0
+            &key_physical_attrs 100 100 1200 237 0 0 0
+
+            &key_physical_attrs 100 100 0 337 0 0 0
+            &key_physical_attrs 100 100 100 312 0 0 0
+            &key_physical_attrs 100 100 200 300 0 0 0
+            &key_physical_attrs 100 100 325 337 0 0 0
+
+            &key_physical_attrs 100 100 437 350 1000 437 350
+            &key_physical_attrs 100 100 550 387 2000 550 387
+            &key_physical_attrs 100 100 650 387 (-2000) 650 387
+            &key_physical_attrs 100 100 763 350 (-1000) 0 350
+
+            &key_physical_attrs 100 100 1200 337 0 0 0
         >;
     };
 
@@ -67,7 +72,6 @@
         compatible = "zmk,matrix-transform";
         columns = <11>;
         rows = <4>;
-
         map = <
             RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)
             RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10)
@@ -89,7 +93,6 @@
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
         diode-direction = "col2row";
-
         row-gpios =
             <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
             <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
@@ -106,12 +109,18 @@
     };
 
     /*
-     * 実装されているロータリーエンコーダーは左側1個だけ。
-     * roBa_L.overlayでleft_encoderを有効化する。
+     * roBaの実装エンコーダーは左側1個。
+     * 左側はroBa_L.overlayでleft_encoderを有効化する。
+     * 右側には、標準ファームと同じセンサー番号を保つための
+     * 無効なダミーエンコーダーを置く。
      */
+    right_encoder: encoder_right {
+        status = "disabled";
+    };
+
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;
-        triggers-per-rotation = <12>;
+        sensors = <&left_encoder &right_encoder>;
+        triggers-per-rotation = <10>;
     };
 };
