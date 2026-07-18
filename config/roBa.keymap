@@ -320,6 +320,17 @@
         };
     };
 
+    behaviors {
+        pgdn_pgup: pgdn_pgup {
+            compatible = "zmk,behavior-mod-morph";
+            label = "PGDN_PGUP";
+            bindings = <&kp PAGE_DOWN>, <&kp PAGE_UP>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
