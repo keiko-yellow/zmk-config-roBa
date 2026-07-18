@@ -325,10 +325,10 @@
 
         default_layout {
             bindings = <
-&kp Q            &kp L           &kp U        &kp COMMA  &kp DOT                                                 &kp F                  &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E      &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS         &kp PRINTSCREEN      &kp F15          &kp K                  &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LEFT_WIN Z   &kp X           &kp C        &kp V      &kp LEFT_BRACKET  &lt 5 F10            &kp LANG2        &kp G                  &kp D  &kp M  &kp J  &mt LEFT_WIN B
-&kp PRINTSCREEN  &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 LANG_ZENKAKUHANKAKU
+&kp Q           &kp L           &kp U        &kp COMMA  &kp DOT                                                 &kp F                  &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E     &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS         &kp PRINTSCREEN      &kp F15          &kp K                  &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LEFT_WIN Z  &kp X           &kp C        &kp V      &kp LEFT_BRACKET  &kp F2               &kp LANG2        &kp G                  &kp D  &kp M  &kp J  &mt LEFT_WIN B
+&kp LG(LS(S))   &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 LANG_ZENKAKUHANKAKU
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
