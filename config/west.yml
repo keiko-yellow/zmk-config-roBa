@@ -2,10 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+
+      # main追従をやめ、同じ内容で再ビルドできるよう固定する。
+      revision: 484a0547078228f6957ed164523823e39fbedec4
+
       import: app/west.yml
+
   self:
     path: config
