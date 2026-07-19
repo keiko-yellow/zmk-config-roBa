@@ -16,6 +16,7 @@
 
 / {
     trackball_listener {
+        status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
     };
@@ -58,21 +59,12 @@
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
+        spi-max-frequency = <2000000>;
 
         /*
-         * 従来の2MHzから1MHzへ下げる。
-         * カーソルの体感速度は変えず、SPI信号の余裕を増やす。
+         * 外部ドライバ用の割り込み指定は irq-gpios。
+         * 割り込みピンは従来どおりP0.2。
          */
-        spi-max-frequency = <1000000>;
-
-        res-cpi = <900>;
-        motion-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        zephyr,axis-x = <INPUT_REL_Y>;
-        zephyr,axis-y = <INPUT_REL_X>;
-        invert-x;
+        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
-};
-
-&uicr {
-    nfct-pins-as-gpios;
 };
