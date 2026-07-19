@@ -22,15 +22,6 @@
     quick-tap-ms = <0>;
 };
 
-/*
- * roBa公式の外部PMW3610ドライバを使用。
- * レイヤー4：オートマウス
- * レイヤー1：スクロール
- */
-&trackball {
-    automouse-layer = <MOUSE>;
-    scroll-layers = <NUM>;
-};
 
 / {
     combos {
