@@ -1,5 +1,1 @@
-config ZMK_INPUT_PROCESSOR_MOTION_THRESHOLD
-    bool "Pointer motion threshold gate"
-    default y
-    depends on ZMK_POINTING
-    depends on (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)
+# 独自input processor用のKconfig項目は定義しない。
