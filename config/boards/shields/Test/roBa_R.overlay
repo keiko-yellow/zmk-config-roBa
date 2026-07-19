@@ -58,7 +58,13 @@
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
-        spi-max-frequency = <2000000>;
+
+        /*
+         * 従来の2MHzから1MHzへ下げる。
+         * カーソルの体感速度は変えず、SPI信号の余裕を増やす。
+         */
+        spi-max-frequency = <1000000>;
+
         res-cpi = <900>;
         motion-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         zephyr,axis-x = <INPUT_REL_Y>;
