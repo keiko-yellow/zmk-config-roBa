@@ -8,7 +8,16 @@
 # workspace copy, not the upstream GitHub repository.
 
 zephyr_library()
-zephyr_library_sources(src/automouse_key_exit.c)
+
+# レイヤー管理APIは中央側だけにリンクされる。
+# 左側ペリフェラルではこのCファイルをコンパイルしない。
+zephyr_library_sources_ifdef(
+    CONFIG_ZMK_SPLIT_ROLE_CENTRAL
+    src/automouse_key_exit.c
+)
+
+# PMW3610ドライバも右側中央だけで使用する。
+if(CONFIG_PMW3610)
 
 set(ROBA_PMW3610_SOURCE
     "${ZEPHYR_BASE}/../zmk-pmw3610-driver/src/pmw3610.c"
@@ -70,3 +79,5 @@ if(ROBA_ALREADY_PATCHED EQUAL -1)
 else()
     message(STATUS "roBa: legacy PMW3610 automouse timeout already disabled")
 endif()
+
+endif() # CONFIG_PMW3610
