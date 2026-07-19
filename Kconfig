@@ -1,0 +1,4 @@
+# roBa local module
+#
+# No custom Kconfig options are required.
+# PMW3610 options are supplied by the pinned external legacy driver.
