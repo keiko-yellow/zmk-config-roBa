@@ -66,5 +66,12 @@
          * 割り込みピンは従来どおりP0.2。
          */
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+
+        /*
+         * 右側にだけ存在するPMW3610ノードへ設定する。
+         * 共有keymapに&trackballを書かないことで左側ビルドも通る。
+         */
+        automouse-layer = <4>;
+        scroll-layers = <1>;
     };
 };
