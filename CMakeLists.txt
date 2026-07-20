@@ -1,22 +1,21 @@
 # roBa user module
 #
-# 1. Compile the immediate-exit listener.
-# 2. Disable only the legacy PMW3610 automouse timeout start.
+# This module:
+# 1. Compiles the automouse controller only on the split central.
+# 2. Disables the legacy PMW3610 time-based layer timeout.
+# 3. Adds the typing-idle guard before automouse layer activation.
 #
-# The external driver is pinned in config/west.yml. During CMake configure,
-# west has already downloaded it into the workspace. We patch the fetched
-# workspace copy, not the upstream GitHub repository.
+# The external driver is pinned in config/west.yml. The fetched workspace
+# copy is patched during CMake configuration. If the expected source text is
+# missing, the build fails instead of silently producing different behavior.
 
 zephyr_library()
 
-# レイヤー管理APIは中央側だけにリンクされる。
-# 左側ペリフェラルではこのCファイルをコンパイルしない。
 zephyr_library_sources_ifdef(
     CONFIG_ZMK_SPLIT_ROLE_CENTRAL
     src/automouse_key_exit.c
 )
 
-# PMW3610ドライバも右側中央だけで使用する。
 if(CONFIG_PMW3610)
 
 set(ROBA_PMW3610_SOURCE
@@ -24,7 +23,6 @@ set(ROBA_PMW3610_SOURCE
 )
 
 if(NOT EXISTS "${ROBA_PMW3610_SOURCE}")
-    # Fallbacks for slightly different west workspace layouts.
     set(_roba_pmw3610_candidates
         "${ZEPHYR_BASE}/../../zmk-pmw3610-driver/src/pmw3610.c"
         "${CMAKE_CURRENT_LIST_DIR}/../zmk-pmw3610-driver/src/pmw3610.c"
@@ -42,12 +40,15 @@ endif()
 if(NOT EXISTS "${ROBA_PMW3610_SOURCE}")
     message(FATAL_ERROR
         "zmk-pmw3610-driver/src/pmw3610.c was not found. "
-        "The legacy automouse timeout cannot be disabled safely."
+        "The custom automouse behavior cannot be applied safely."
     )
 endif()
 
 file(READ "${ROBA_PMW3610_SOURCE}" ROBA_PMW3610_TEXT)
 
+# ------------------------------------------------------------
+# Patch A: disable time-based automouse layer deactivation.
+# ------------------------------------------------------------
 set(ROBA_TIMEOUT_START
     "k_timer_start(&automouse_layer_timer, K_MSEC(CONFIG_PMW3610_AUTOMOUSE_TIMEOUT_MS), K_NO_WAIT);"
 )
@@ -55,29 +56,70 @@ set(ROBA_TIMEOUT_DISABLED_MARKER
     "/* roBa: timeout disabled; exit is handled by automouse_key_exit.c */"
 )
 
-string(FIND "${ROBA_PMW3610_TEXT}" "${ROBA_TIMEOUT_DISABLED_MARKER}" ROBA_ALREADY_PATCHED)
+string(FIND "${ROBA_PMW3610_TEXT}" "${ROBA_TIMEOUT_DISABLED_MARKER}" ROBA_TIMEOUT_ALREADY_PATCHED)
 
-if(ROBA_ALREADY_PATCHED EQUAL -1)
+if(ROBA_TIMEOUT_ALREADY_PATCHED EQUAL -1)
     string(FIND "${ROBA_PMW3610_TEXT}" "${ROBA_TIMEOUT_START}" ROBA_TIMEOUT_FOUND)
 
     if(ROBA_TIMEOUT_FOUND EQUAL -1)
         message(FATAL_ERROR
-            "The pinned PMW3610 driver no longer contains the expected "
-            "automouse timer start line. Refusing to build an unknown behavior."
+            "Expected PMW3610 automouse timer start line was not found. "
+            "Refusing to build unknown timeout behavior."
         )
     endif()
 
     string(REPLACE
         "${ROBA_TIMEOUT_START}"
         "${ROBA_TIMEOUT_DISABLED_MARKER}"
-        ROBA_PMW3610_PATCHED
+        ROBA_PMW3610_TEXT
         "${ROBA_PMW3610_TEXT}"
     )
-
-    file(WRITE "${ROBA_PMW3610_SOURCE}" "${ROBA_PMW3610_PATCHED}")
-    message(STATUS "roBa: legacy PMW3610 automouse timeout disabled")
-else()
-    message(STATUS "roBa: legacy PMW3610 automouse timeout already disabled")
 endif()
+
+# ------------------------------------------------------------
+# Patch B: block layer activation during the typing guard.
+#
+# All pointer reports continue normally. Only layer activation is gated.
+# ------------------------------------------------------------
+set(ROBA_ACTIVATE_ORIGINAL
+"static void activate_automouse_layer() {
+    automouse_triggered = true;"
+)
+
+set(ROBA_ACTIVATE_PATCHED
+"extern bool roba_automouse_allowed(void);
+
+static void activate_automouse_layer() {
+    if (!roba_automouse_allowed()) {
+        return;
+    }
+
+    automouse_triggered = true;"
+)
+
+string(FIND "${ROBA_PMW3610_TEXT}" "extern bool roba_automouse_allowed(void);" ROBA_GUARD_ALREADY_PATCHED)
+
+if(ROBA_GUARD_ALREADY_PATCHED EQUAL -1)
+    string(FIND "${ROBA_PMW3610_TEXT}" "${ROBA_ACTIVATE_ORIGINAL}" ROBA_ACTIVATE_FOUND)
+
+    if(ROBA_ACTIVATE_FOUND EQUAL -1)
+        message(FATAL_ERROR
+            "Expected PMW3610 activate_automouse_layer function was not found. "
+            "Refusing to build without the typing guard."
+        )
+    endif()
+
+    string(REPLACE
+        "${ROBA_ACTIVATE_ORIGINAL}"
+        "${ROBA_ACTIVATE_PATCHED}"
+        ROBA_PMW3610_TEXT
+        "${ROBA_PMW3610_TEXT}"
+    )
+endif()
+
+file(WRITE "${ROBA_PMW3610_SOURCE}" "${ROBA_PMW3610_TEXT}")
+
+message(STATUS "roBa: legacy PMW3610 timeout disabled")
+message(STATUS "roBa: typing guard added to automouse activation")
 
 endif() # CONFIG_PMW3610

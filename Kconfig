@@ -1,4 +1,13 @@
-# roBa local module
-#
-# No custom Kconfig options are required.
-# PMW3610 options are supplied by the pinned external legacy driver.
+menu "roBa custom automouse"
+
+config ROBA_AUTOMOUSE_TYPING_GUARD_MS
+    int "Automouse activation delay after normal key press (ms)"
+    default 500
+    range 0 2000
+    help
+      Pointer movement is still reported during this period, but movement
+      cannot activate the automouse layer. Each normal key press restarts
+      the period. Mouse-button positions do not restart it while the
+      automouse layer is already active.
+
+endmenu
