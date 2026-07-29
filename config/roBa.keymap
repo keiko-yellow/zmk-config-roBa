@@ -12,11 +12,14 @@
  * 4 = mouse
  * 5 = arrow
  * 6 = layer_6（手動固定マウス）
+ * 7 = num_over_fixed_mouse（レイヤー6＋数字レイヤー時）
  */
 #define BASE 0
 #define NUM 1
 #define MOUSE 4
 #define SCROLL 5
+#define FIXED_MOUSE 6
+#define NUM_OVER_FIXED_MOUSE 7
 
 &mt {
     flavor = "balanced";
@@ -24,6 +27,15 @@
 };
 
 / {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        num_over_fixed_mouse_condition {
+            if-layers = <NUM FIXED_MOUSE>;
+            then-layer = <NUM_OVER_FIXED_MOUSE>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -136,34 +148,34 @@
             bindings = <&kp UNDER>;
             key-positions = <18 20>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <NUM NUM_OVER_FIXED_MOUSE>;
         };
 
         num_78_multiply {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <6 7>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <NUM NUM_OVER_FIXED_MOUSE>;
         };
         num_89_divide {
             bindings = <&kp SLASH>;
             key-positions = <7 8>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <NUM NUM_OVER_FIXED_MOUSE>;
         };
 
         num_45_plus {
             bindings = <&kp COLON>;
             key-positions = <18 19>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <NUM NUM_OVER_FIXED_MOUSE>;
         };
 
         num_56_minus {
             bindings = <&kp MINUS>;
             key-positions = <19 20>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <NUM NUM_OVER_FIXED_MOUSE>;
         };
         f4 {
             bindings = <&kp F4>;
@@ -250,6 +262,15 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
+        };
+        num_over_fixed_mouse {
+            bindings = <
+&kp AT_SIGN    &kp LS(INT1)  &kp QUESTION     &kp UP_ARROW        &kp ASTERISK                                             &kp COMMA   &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
+&kp SQT        &kp MINUS     &kp CARET        &kp LS(LEFT_ARROW)  &kp RIGHT_ARROW       &kp LS(ASTRK)      &kp UNDERSCORE  &kp N0      &kp N4  &kp N5  &kp N6  &kp LS(N5)
+&kp HASH       &kp PLUS      &kp EXCLAMATION  &kp DOWN_ARROW      &kp LEFT_PARENTHESIS  &trans             &kp KP_NUMLOCK  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp INTERNATIONAL_3
+&kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
+            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
     };
 };
