@@ -220,7 +220,7 @@
 &pgdn_pgup      &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_UP>;
         };
 
         sign_num {
