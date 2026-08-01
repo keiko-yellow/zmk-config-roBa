@@ -220,7 +220,7 @@
 &pgdn_pgup      &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         sign_num {
@@ -231,7 +231,7 @@
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         layer_bt_sel0_4 {
@@ -242,7 +242,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &bt BT_CLR_ALL  &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         no {
@@ -253,7 +253,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                           &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         mouse {
@@ -286,7 +286,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         num_over_fixed_mouse {
@@ -297,7 +297,7 @@
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         layer_8 {
