@@ -32,8 +32,8 @@
         compatible = "zmk,conditional-layers";
 
         num_over_fixed_mouse_condition {
-            if-layers = <NUM FIXED_MOUSE>;
-            then-layer = <NUM_OVER_FIXED_MOUSE>;
+            if-layers = <0 6>;
+            then-layer = <7>;
         };
     };
 
@@ -44,21 +44,21 @@
             bindings = <&mkp MB3>;
             key-positions = <18 19>;
             timeout-ms = <80>;
-            layers = <MOUSE 6>;
+            layers = <4 6>;
         };
 
         mb4 {
             bindings = <&mkp MB4>;
             key-positions = <6 7>;
             timeout-ms = <80>;
-            layers = <0 2 3 4 5 6>;
+            layers = <1 2 3 4 5 6>;
         };
 
         mb5 {
             bindings = <&mkp MB5>;
             key-positions = <7 8>;
             timeout-ms = <80>;
-            layers = <0 2 3 4 5 6>;
+            layers = <1 2 3 4 5 6>;
         };
 
         left {
@@ -155,35 +155,35 @@
             bindings = <&kp UNDER>;
             key-positions = <18 20>;
             timeout-ms = <80>;
-            layers = <NUM NUM_OVER_FIXED_MOUSE>;
+            layers = <0 7>;
         };
 
         num_78_multiply {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <6 7>;
             timeout-ms = <80>;
-            layers = <NUM NUM_OVER_FIXED_MOUSE>;
+            layers = <0 7>;
         };
 
         num_89_divide {
             bindings = <&kp SLASH>;
             key-positions = <7 8>;
             timeout-ms = <80>;
-            layers = <NUM NUM_OVER_FIXED_MOUSE>;
+            layers = <0 7>;
         };
 
         num_45_plus {
             bindings = <&kp COLON>;
             key-positions = <18 19>;
             timeout-ms = <80>;
-            layers = <NUM NUM_OVER_FIXED_MOUSE>;
+            layers = <0 7>;
         };
 
         num_56_minus {
             bindings = <&kp MINUS>;
             key-positions = <19 20>;
             timeout-ms = <80>;
-            layers = <NUM NUM_OVER_FIXED_MOUSE>;
+            layers = <0 7>;
         };
 
         f4 {
@@ -212,17 +212,6 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layout {
-            bindings = <
-&kp Q           &kp L           &kp U        &kp COMMA  &kp DOT                                                 &kp F                  &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E     &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS         &kp PRINTSCREEN      &kp F15          &kp K                  &kp T  &kp N  &kp S  &mt RCTRL H
-&mt LEFT_WIN Z  &kp X           &kp C        &kp V      &kp LEFT_BRACKET  &kp F2               &tog 6           &kp G                  &kp D  &kp M  &kp J  &mt LEFT_WIN B
-&pgdn_pgup      &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
-            >;
-
-            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_UP>;
-        };
-
         sign_num {
             bindings = <
 &kp AT_SIGN    &kp LS(INT1)  &kp QUESTION     &kp UP_ARROW        &kp ASTERISK                                             &kp COMMA   &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
@@ -231,7 +220,18 @@
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
+        };
+
+        default_layout {
+            bindings = <
+&kp Q           &kp L           &kp U        &kp COMMA  &kp DOT                                                 &kp F                  &kp W  &kp R  &kp Y  &kp P
+&mt LCTRL E     &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS         &kp PRINTSCREEN      &kp F15          &kp K                  &kp T  &kp N  &kp S  &mt RCTRL H
+&mt LEFT_WIN Z  &kp X           &kp C        &kp V      &kp LEFT_BRACKET  &kp F2               &tog 6           &kp G                  &kp D  &kp M  &kp J  &mt LEFT_WIN B
+&pgdn_pgup      &kp LS(HOME)    &kp LS(END)  &lt 0 TAB  &mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 0 BACKSPACE  &mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
+            >;
+
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
         layer_bt_sel0_4 {
@@ -242,7 +242,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &bt BT_CLR_ALL  &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
         no {
@@ -253,7 +253,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                           &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
         mouse {
@@ -264,7 +264,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
         arrow {
@@ -275,7 +275,7 @@
 &trans  &trans  &trans     &trans          &trans           &trans      &trans  &trans                                                                   &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
         layer_6 {
@@ -286,7 +286,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
         num_over_fixed_mouse {
@@ -297,7 +297,7 @@
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
         layer_8 {
