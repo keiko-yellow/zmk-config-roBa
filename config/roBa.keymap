@@ -215,7 +215,7 @@
 &mt LEFT_WIN Z  &kp X           &kp C        &kp V      &kp LEFT_BRACKET  &kp F2               &tog FIXED_MOUSE           &kp G                  &kp D  &kp M  &kp J  &mt LEFT_WIN B
 &pgdn_pgup      &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &shift_mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &shift_mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
         number {
             bindings = <
@@ -224,7 +224,7 @@
 &kp HASH       &kp PLUS      &kp EXCLAMATION  &kp DOWN_ARROW      &kp LEFT_PARENTHESIS  &trans             &kp KP_NUMLOCK  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp INTERNATIONAL_3
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
         bluetooth {
             bindings = <
@@ -233,7 +233,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans          &trans        &trans        &trans        &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &bt BT_CLR_ALL  &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
         function {
             bindings = <
@@ -242,7 +242,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans   &kp F1  &kp F2  &kp F3  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                           &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
         auto_mouse {
             bindings = <
@@ -251,7 +251,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
         fixed_mouse {
             bindings = <
@@ -260,7 +260,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
         fixed_number {
             bindings = <
@@ -269,7 +269,7 @@
 &kp HASH       &kp PLUS      &kp EXCLAMATION  &kp DOWN_ARROW      &kp LEFT_PARENTHESIS  &trans             &kp KP_NUMLOCK  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp INTERNATIONAL_3
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
     };
 };
