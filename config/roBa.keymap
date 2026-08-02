@@ -13,6 +13,7 @@
  * 5 = fixed_mouse   手動固定マウス
  * 6 = fixed_number  fixed_mouse中の数字・記号（条件レイヤー）
  */
+
 #define BASE 0
 #define NUM 1
 #define BLUETOOTH 2
@@ -52,6 +53,7 @@
             timeout-ms = <80>;
             layers = <BASE BLUETOOTH FUNCTION AUTO_MOUSE FIXED_MOUSE>;
         };
+
         mb5 {
             bindings = <&mkp MB5>;
             key-positions = <7 8>;
@@ -70,6 +72,7 @@
             key-positions = <12 13>;
             timeout-ms = <80>;
         };
+
         up {
             bindings = <&kp UP_ARROW>;
             key-positions = <1 2>;
@@ -87,6 +90,7 @@
             key-positions = <1 0>;
             timeout-ms = <80>;
         };
+
         del2 {
             bindings = <&kp ESCAPE>;
             key-positions = <8 9>;
@@ -104,6 +108,7 @@
             key-positions = <30 31>;
             timeout-ms = <80>;
         };
+
         hankaku {
             bindings = <&kp GRAVE>;
             key-positions = <20 21>;
@@ -121,6 +126,7 @@
             key-positions = <22 23>;
             timeout-ms = <80>;
         };
+
         xv_home {
             bindings = <&kp HOME>;
             key-positions = <23 25>;
@@ -138,6 +144,7 @@
             key-positions = <31 32>;
             timeout-ms = <80>;
         };
+
         dj_end {
             bindings = <&kp END>;
             key-positions = <30 32>;
@@ -157,6 +164,7 @@
             timeout-ms = <80>;
             layers = <NUM FIXED_NUMBER>;
         };
+
         num_89_divide {
             bindings = <&kp SLASH>;
             key-positions = <7 8>;
@@ -177,12 +185,12 @@
             timeout-ms = <80>;
             layers = <NUM FIXED_NUMBER>;
         };
+
         f4 {
             bindings = <&kp F4>;
             key-positions = <32 33>;
             timeout-ms = <80>;
         };
-
     };
 
     behaviors {
@@ -212,6 +220,7 @@
             compatible = "zmk,behavior-mod-morph";
             label = "PGDN_PGUP";
             bindings = <&kp PAGE_DOWN>, <&kp PAGE_UP>;
+
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
@@ -219,15 +228,18 @@
 
     keymap {
         compatible = "zmk,keymap";
+
         base {
             bindings = <
-&kp Q           &kp L           &kp U        &kp COMMA  &kp DOT                                                 &kp F                  &kp W  &kp R  &kp Y  &kp P
-&ctrl_mt LCTRL E     &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS         &kp PRINTSCREEN      &kp F15          &kp K                  &kp T  &kp N  &kp S  &ctrl_mt RCTRL H
-&mt LEFT_WIN Z  &kp X           &kp C        &kp V      &kp LEFT_BRACKET  &kp F2               &tog FIXED_MOUSE           &kp G                  &kp D  &kp M  &kp J  &mt LEFT_WIN B
-&pgdn_pgup      &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &shift_mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &shift_mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
+&kp Q             &kp L           &kp U        &kp COMMA  &kp DOT                                                        &kp F                        &kp W  &kp R  &kp Y  &kp P
+&ctrl_mt LCTRL E  &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS               &kp PRINTSCREEN      &kp F15           &kp K                        &kp T  &kp N  &kp S  &ctrl_mt RCTRL H
+&mt LEFT_WIN Z    &kp X           &kp C        &kp V      &kp LEFT_BRACKET        &kp F2               &tog FIXED_MOUSE  &kp G                        &kp D  &kp M  &kp J  &mt LEFT_WIN B
+&kp PRINTSCREEN   &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &shift_mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE   &shift_mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
             >;
+
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
+
         number {
             bindings = <
 &kp AT_SIGN    &kp LS(INT1)  &kp QUESTION     &kp UP_ARROW        &kp ASTERISK                                             &kp COMMA   &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
@@ -235,8 +247,10 @@
 &kp HASH       &kp PLUS      &kp EXCLAMATION  &kp DOWN_ARROW      &kp LEFT_PARENTHESIS  &trans             &kp KP_NUMLOCK  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp INTERNATIONAL_3
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
+
         bluetooth {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                              &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
@@ -244,8 +258,10 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans          &trans        &trans        &trans        &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &bt BT_CLR_ALL  &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
+
         function {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans   &kp F7  &kp F8  &kp F9  &trans
@@ -253,8 +269,10 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans   &kp F1  &kp F2  &kp F3  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                           &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
+
         auto_mouse {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans  &trans
@@ -262,8 +280,10 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
+
         fixed_mouse {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans  &trans
@@ -271,8 +291,10 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
+
         fixed_number {
             bindings = <
 &kp AT_SIGN    &kp LS(INT1)  &kp QUESTION     &kp UP_ARROW        &kp ASTERISK                                             &kp COMMA   &kp N7  &kp N8  &kp N9  &kp LS(NUMBER_4)
@@ -280,6 +302,7 @@
 &kp HASH       &kp PLUS      &kp EXCLAMATION  &kp DOWN_ARROW      &kp LEFT_PARENTHESIS  &trans             &kp KP_NUMLOCK  &kp PERIOD  &kp N1  &kp N2  &kp N3  &kp INTERNATIONAL_3
 &kp SEMICOLON  &kp EQUAL     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                              &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
     };
