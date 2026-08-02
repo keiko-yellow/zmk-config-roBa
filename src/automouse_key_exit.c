@@ -5,17 +5,23 @@
  * - PMW3610 movement activates layer 4 through the legacy driver.
  * - Time alone never deactivates layer 4.
  * - MB1-MB5 positions keep layer 4 active.
+ * - Held Ctrl and Shift mod-taps keep layer 4 active.
+ * - Tapped Ctrl/Shift mod-taps (E/H/Space/Enter) are treated as normal keys
+ *   and deactivate layer 4 on physical key release.
  * - Any other normal key immediately deactivates layer 4.
  * - After a normal key press, pointer movement continues, but automouse
  *   activation is blocked for CONFIG_ROBA_AUTOMOUSE_TYPING_GUARD_MS.
  *
- * Ctrl mod-tap handling:
+ * Modifier mod-tap positions:
  * - Position 10 = &mt LCTRL E
  * - Position 21 = &mt RCTRL H
+ * - Position 38 = &shift_mt LSHIFT SPACE
+ * - Position 41 = &shift_mt RIGHT_SHIFT ENTER
  *
- * A Ctrl mod-tap press is not treated as a normal key immediately.
- * If ZMK resolves it as held Ctrl, layer 4 stays active and Ctrl+drag works.
- * If it resolves as a tap (E/H), the typing guard and layer exit are applied
+ * A modifier mod-tap press is not treated as a normal key immediately.
+ * If ZMK resolves it as a held modifier, layer 4 stays active so
+ * Ctrl+click/drag and Shift+click work.
+ * If it resolves as a tap, the typing guard and layer exit are applied
  * when the physical key is released.
  */
 
@@ -39,14 +45,21 @@ LOG_MODULE_REGISTER(roba_automouse, CONFIG_ZMK_LOG_LEVEL);
 
 #define ROBA_LEFT_CTRL_POSITION 10
 #define ROBA_RIGHT_CTRL_POSITION 21
+#define ROBA_LEFT_SHIFT_POSITION 38
+#define ROBA_RIGHT_SHIFT_POSITION 41
 
 static atomic_t typing_guard_active = ATOMIC_INIT(0);
 static atomic_t last_normal_key_time = ATOMIC_INIT(0);
 
 static bool left_ctrl_candidate;
 static bool right_ctrl_candidate;
+static bool left_shift_candidate;
+static bool right_shift_candidate;
+
 static bool left_ctrl_resolved_as_hold;
 static bool right_ctrl_resolved_as_hold;
+static bool left_shift_resolved_as_hold;
+static bool right_shift_resolved_as_hold;
 
 static bool roba_is_mouse_button_position(uint32_t position) {
     switch (position) {
@@ -96,8 +109,8 @@ static void roba_exit_mouse_layer_for_normal_key(void) {
 }
 
 /*
- * Record when the two Ctrl mod-taps have actually resolved to held modifiers.
- * Merely pressing the physical E/H key does not set these flags.
+ * Record when Ctrl/Shift mod-taps have actually resolved to held modifiers.
+ * Merely pressing their physical positions does not set these flags.
  */
 static int roba_modifier_listener(const zmk_event_t *eh) {
     struct zmk_modifiers_state_changed *ev = as_zmk_modifiers_state_changed(eh);
@@ -114,6 +127,14 @@ static int roba_modifier_listener(const zmk_event_t *eh) {
         right_ctrl_resolved_as_hold = true;
     }
 
+    if (left_shift_candidate && (ev->modifiers & MOD_LSFT)) {
+        left_shift_resolved_as_hold = true;
+    }
+
+    if (right_shift_candidate && (ev->modifiers & MOD_RSFT)) {
+        right_shift_resolved_as_hold = true;
+    }
+
     return ZMK_EV_EVENT_BUBBLE;
 }
 
@@ -125,9 +146,8 @@ static int roba_position_listener(const zmk_event_t *eh) {
     }
 
     /*
-     * Ctrl mod-tap press:
+     * Modifier mod-tap press:
      * Do not start the typing guard and do not exit layer 4 yet.
-     * This allows immediate pointer movement to activate/keep layer 4.
      */
     if (ev->state && ev->position == ROBA_LEFT_CTRL_POSITION) {
         left_ctrl_candidate = true;
@@ -141,10 +161,22 @@ static int roba_position_listener(const zmk_event_t *eh) {
         return ZMK_EV_EVENT_BUBBLE;
     }
 
+    if (ev->state && ev->position == ROBA_LEFT_SHIFT_POSITION) {
+        left_shift_candidate = true;
+        left_shift_resolved_as_hold = false;
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    if (ev->state && ev->position == ROBA_RIGHT_SHIFT_POSITION) {
+        right_shift_candidate = true;
+        right_shift_resolved_as_hold = false;
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
     /*
-     * Ctrl mod-tap release:
-     * - held Ctrl: preserve automouse state
-     * - tapped E/H: treat as a normal typed key
+     * Modifier mod-tap release:
+     * - held modifier: preserve automouse layer 4
+     * - tapped E/H/Space/Enter: treat as a normal typed key
      */
     if (!ev->state && ev->position == ROBA_LEFT_CTRL_POSITION) {
         bool was_hold = left_ctrl_resolved_as_hold;
@@ -162,6 +194,30 @@ static int roba_position_listener(const zmk_event_t *eh) {
         bool was_hold = right_ctrl_resolved_as_hold;
         right_ctrl_candidate = false;
         right_ctrl_resolved_as_hold = false;
+
+        if (!was_hold) {
+            roba_exit_mouse_layer_for_normal_key();
+        }
+
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    if (!ev->state && ev->position == ROBA_LEFT_SHIFT_POSITION) {
+        bool was_hold = left_shift_resolved_as_hold;
+        left_shift_candidate = false;
+        left_shift_resolved_as_hold = false;
+
+        if (!was_hold) {
+            roba_exit_mouse_layer_for_normal_key();
+        }
+
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    if (!ev->state && ev->position == ROBA_RIGHT_SHIFT_POSITION) {
+        bool was_hold = right_shift_resolved_as_hold;
+        right_shift_candidate = false;
+        right_shift_resolved_as_hold = false;
 
         if (!was_hold) {
             roba_exit_mouse_layer_for_normal_key();
