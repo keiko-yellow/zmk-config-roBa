@@ -42,7 +42,7 @@
         mb3 {
             bindings = <&mkp MB3>;
             key-positions = <18 19>;
-            timeout-ms = <80>;
+            timeout-ms = <40>;
             layers = <AUTO_MOUSE FIXED_MOUSE>;
         };
 
@@ -186,6 +186,17 @@
     };
 
     behaviors {
+        ctrl_mt: ctrl_mt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CTRL_MT";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            hold-while-undecided;
+            bindings = <&kp>, <&kp>;
+        };
+
         shift_mt: shift_mt {
             compatible = "zmk,behavior-hold-tap";
             label = "SHIFT_MT";
@@ -211,7 +222,7 @@
         base {
             bindings = <
 &kp Q           &kp L           &kp U        &kp COMMA  &kp DOT                                                 &kp F                  &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E     &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS         &kp PRINTSCREEN      &kp F15          &kp K                  &kp T  &kp N  &kp S  &mt RCTRL H
+&ctrl_mt LCTRL E     &mt LEFT_ALT I  &kp A        &kp O      &kp MINUS         &kp PRINTSCREEN      &kp F15          &kp K                  &kp T  &kp N  &kp S  &ctrl_mt RCTRL H
 &mt LEFT_WIN Z  &kp X           &kp C        &kp V      &kp LEFT_BRACKET  &kp F2               &tog FIXED_MOUSE           &kp G                  &kp D  &kp M  &kp J  &mt LEFT_WIN B
 &pgdn_pgup      &kp LS(HOME)    &kp LS(END)  &lt 1 TAB  &shift_mt LSHIFT SPACE  &lt 3 ESCAPE         &lt 1 BACKSPACE  &shift_mt RIGHT_SHIFT ENTER                       &lt 2 GRAVE
             >;
