@@ -13,16 +13,22 @@
  *   activation is blocked for CONFIG_ROBA_AUTOMOUSE_TYPING_GUARD_MS.
  *
  * Modifier mod-tap positions:
- * - Position 10 = &mt LCTRL E
- * - Position 21 = &mt RCTRL H
+ * - Position 10 = &ctrl_mt LCTRL E
+ * - Position 21 = &ctrl_mt RCTRL H
  * - Position 38 = &shift_mt LSHIFT SPACE
  * - Position 41 = &shift_mt RIGHT_SHIFT ENTER
  *
  * A modifier mod-tap press is not treated as a normal key immediately.
  * If ZMK resolves it as a held modifier, layer 4 stays active so
  * Ctrl+click/drag and Shift+click work.
- * If it resolves as a tap, the typing guard and layer exit are applied
- * when the physical key is released.
+ *
+ * For very fast modifier + mouse-button chords, the physical mouse-button
+ * press also marks every pending Ctrl/Shift candidate as a hold. This avoids
+ * a race where layer 4 is deactivated before the delayed T/N combo decision
+ * has finished.
+ *
+ * If a modifier key is tapped without a mouse-button press, the tap
+ * (E/H/Space/Enter) is treated as normal input and exits layer 4.
  */
 
 #include <stdbool.h>
@@ -71,6 +77,24 @@ static bool roba_is_mouse_button_position(uint32_t position) {
         return true;
     default:
         return false;
+    }
+}
+
+static void roba_mark_pending_modifiers_as_mouse_hold(void) {
+    if (left_ctrl_candidate) {
+        left_ctrl_resolved_as_hold = true;
+    }
+
+    if (right_ctrl_candidate) {
+        right_ctrl_resolved_as_hold = true;
+    }
+
+    if (left_shift_candidate) {
+        left_shift_resolved_as_hold = true;
+    }
+
+    if (right_shift_candidate) {
+        right_shift_resolved_as_hold = true;
     }
 }
 
@@ -237,6 +261,7 @@ static int roba_position_listener(const zmk_event_t *eh) {
      * On the base layer they remain normal typing keys.
      */
     if (mouse_layer_active && roba_is_mouse_button_position(ev->position)) {
+        roba_mark_pending_modifiers_as_mouse_hold();
         return ZMK_EV_EVENT_BUBBLE;
     }
 
