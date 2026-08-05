@@ -68,10 +68,13 @@
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
         /*
-         * 右側にだけ存在するPMW3610ノードへ設定する。
-         * 共有keymapに&trackballを書かないことで左側ビルドも通る。
+         * レイヤー1：通常の数字・スクロールレイヤー
+         * レイヤー6：fixed_mouse中の条件付き数字レイヤー
+         *
+         * PMW3610ドライバは「現在の最上位レイヤー」で
+         * スクロールモードを判定するため、両方を指定する。
          */
         automouse-layer = <4>;
-        scroll-layers = <1>;
+        scroll-layers = <1 6>;
     };
 };
