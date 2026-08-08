@@ -59,21 +59,16 @@
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
-        spi-max-frequency = <2000000>;
 
         /*
-         * 外部ドライバ用の割り込み指定は irq-gpios。
-         * 割り込みピンは従来どおりP0.2。
+         * 残っている一瞬の停止を減らすため、
+         * SPI通信だけ 2MHz → 1MHz に低下。
+         * CPI、125Hz、カーソル速度には影響しない。
          */
+        spi-max-frequency = <1000000>;
+
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
-        /*
-         * レイヤー1：通常の数字・スクロールレイヤー
-         * レイヤー6：fixed_mouse中の条件付き数字レイヤー
-         *
-         * PMW3610ドライバは「現在の最上位レイヤー」で
-         * スクロールモードを判定するため、両方を指定する。
-         */
         automouse-layer = <4>;
         scroll-layers = <1 6>;
     };
