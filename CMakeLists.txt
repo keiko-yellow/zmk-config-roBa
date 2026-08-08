@@ -147,6 +147,37 @@ string(REPLACE
 
 message(STATUS "roBa: PMW3610 input reports changed to K_NO_WAIT")
 
+
+# ------------------------------------------------------------
+# Patch C: prevent PMW3610 pointer reporting from blocking forever.
+#
+# The pinned external PMW3610 driver currently has exactly four
+# K_FOREVER timeouts in input_report_rel() calls:
+# X, Y, vertical wheel, horizontal wheel.
+#
+# This block is inside if(CONFIG_PMW3610), so roBa_L does not execute it.
+# If the pinned driver changes and the expected count is no longer four,
+# fail the build instead of patching an unknown source.
+# ------------------------------------------------------------
+string(REGEX MATCHALL "K_FOREVER" ROBA_PMW3610_FOREVER_MATCHES "${ROBA_PMW3610_TEXT}")
+list(LENGTH ROBA_PMW3610_FOREVER_MATCHES ROBA_PMW3610_FOREVER_COUNT)
+
+if(NOT ROBA_PMW3610_FOREVER_COUNT EQUAL 4)
+    message(FATAL_ERROR
+        "Expected exactly 4 K_FOREVER occurrences in the pinned PMW3610 driver, "
+        "but found ${ROBA_PMW3610_FOREVER_COUNT}. Refusing to patch an unknown driver."
+    )
+endif()
+
+string(REPLACE
+    "K_FOREVER"
+    "K_NO_WAIT"
+    ROBA_PMW3610_TEXT
+    "${ROBA_PMW3610_TEXT}"
+)
+
+message(STATUS "roBa: PMW3610 input reports changed to K_NO_WAIT")
+
 file(WRITE "${ROBA_PMW3610_SOURCE}" "${ROBA_PMW3610_TEXT}")
 
 message(STATUS "roBa: legacy PMW3610 timeout disabled")
