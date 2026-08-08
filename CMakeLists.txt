@@ -344,6 +344,148 @@ endif()
 
 message(STATUS "roBa: PMW3610 initialization retry enabled")
 
+
+# ------------------------------------------------------------
+# Patch G: give PMW3610 motion handling its own workqueue.
+#
+# The original driver disables the PMW3610 IRQ and submits trigger_work to
+# Zephyr's shared system workqueue. If that queue is delayed, the sensor IRQ
+# remains disabled until pmw3610_work_callback() finally runs.
+#
+# Use a dedicated PMW3610 workqueue for trigger_work only.
+# The asynchronous sensor initialization remains on the normal delayable
+# workqueue, so existing initialization/recovery behavior is preserved.
+# ------------------------------------------------------------
+
+set(ROBA_WQ_LOG_ORIGINAL
+[=[LOG_MODULE_REGISTER(pmw3610, CONFIG_INPUT_LOG_LEVEL);]=]
+)
+
+set(ROBA_WQ_LOG_PATCHED
+[=[LOG_MODULE_REGISTER(pmw3610, CONFIG_INPUT_LOG_LEVEL);
+
+/*
+ * roBa: dedicated PMW3610 motion workqueue.
+ */
+#define ROBA_PMW3610_WORKQ_STACK_SIZE 1024
+#define ROBA_PMW3610_WORKQ_PRIORITY K_PRIO_PREEMPT(5)
+
+K_THREAD_STACK_DEFINE(roba_pmw3610_workq_stack, ROBA_PMW3610_WORKQ_STACK_SIZE);
+static struct k_work_q roba_pmw3610_work_q;
+static bool roba_pmw3610_work_q_started;]=]
+)
+
+string(FIND
+    "${ROBA_PMW3610_TEXT}"
+    "K_THREAD_STACK_DEFINE(roba_pmw3610_workq_stack"
+    ROBA_WQ_GLOBALS_ALREADY_PATCHED
+)
+
+if(ROBA_WQ_GLOBALS_ALREADY_PATCHED EQUAL -1)
+    string(FIND
+        "${ROBA_PMW3610_TEXT}"
+        "${ROBA_WQ_LOG_ORIGINAL}"
+        ROBA_WQ_LOG_FOUND
+    )
+    if(ROBA_WQ_LOG_FOUND EQUAL -1)
+        message(FATAL_ERROR
+            "Expected PMW3610 LOG_MODULE_REGISTER line was not found. "
+            "Refusing to add the dedicated workqueue to an unknown driver."
+        )
+    endif()
+
+    string(REPLACE
+        "${ROBA_WQ_LOG_ORIGINAL}"
+        "${ROBA_WQ_LOG_PATCHED}"
+        ROBA_PMW3610_TEXT
+        "${ROBA_PMW3610_TEXT}"
+    )
+endif()
+
+set(ROBA_WQ_SUBMIT_ORIGINAL
+[=[    k_work_submit(&data->trigger_work);]=]
+)
+
+set(ROBA_WQ_SUBMIT_PATCHED
+[=[    k_work_submit_to_queue(&roba_pmw3610_work_q, &data->trigger_work);]=]
+)
+
+string(FIND
+    "${ROBA_PMW3610_TEXT}"
+    "${ROBA_WQ_SUBMIT_PATCHED}"
+    ROBA_WQ_SUBMIT_ALREADY_PATCHED
+)
+
+if(ROBA_WQ_SUBMIT_ALREADY_PATCHED EQUAL -1)
+    string(FIND
+        "${ROBA_PMW3610_TEXT}"
+        "${ROBA_WQ_SUBMIT_ORIGINAL}"
+        ROBA_WQ_SUBMIT_FOUND
+    )
+    if(ROBA_WQ_SUBMIT_FOUND EQUAL -1)
+        message(FATAL_ERROR
+            "Expected PMW3610 trigger_work submit line was not found. "
+            "Refusing to patch an unknown driver."
+        )
+    endif()
+
+    string(REPLACE
+        "${ROBA_WQ_SUBMIT_ORIGINAL}"
+        "${ROBA_WQ_SUBMIT_PATCHED}"
+        ROBA_PMW3610_TEXT
+        "${ROBA_PMW3610_TEXT}"
+    )
+endif()
+
+set(ROBA_WQ_INIT_ORIGINAL
+[=[    // init trigger handler work
+    k_work_init(&data->trigger_work, pmw3610_work_callback);]=]
+)
+
+set(ROBA_WQ_INIT_PATCHED
+[=[    // Start the dedicated PMW3610 motion queue before enabling the IRQ.
+    if (!roba_pmw3610_work_q_started) {
+        k_work_queue_start(&roba_pmw3610_work_q,
+                           roba_pmw3610_workq_stack,
+                           K_THREAD_STACK_SIZEOF(roba_pmw3610_workq_stack),
+                           ROBA_PMW3610_WORKQ_PRIORITY,
+                           NULL);
+        roba_pmw3610_work_q_started = true;
+    }
+
+    // init trigger handler work
+    k_work_init(&data->trigger_work, pmw3610_work_callback);]=]
+)
+
+string(FIND
+    "${ROBA_PMW3610_TEXT}"
+    "k_work_queue_start(&roba_pmw3610_work_q"
+    ROBA_WQ_INIT_ALREADY_PATCHED
+)
+
+if(ROBA_WQ_INIT_ALREADY_PATCHED EQUAL -1)
+    string(FIND
+        "${ROBA_PMW3610_TEXT}"
+        "${ROBA_WQ_INIT_ORIGINAL}"
+        ROBA_WQ_INIT_FOUND
+    )
+    if(ROBA_WQ_INIT_FOUND EQUAL -1)
+        message(FATAL_ERROR
+            "Expected PMW3610 trigger_work initialization block was not found. "
+            "Refusing to patch an unknown driver."
+        )
+    endif()
+
+    string(REPLACE
+        "${ROBA_WQ_INIT_ORIGINAL}"
+        "${ROBA_WQ_INIT_PATCHED}"
+        ROBA_PMW3610_TEXT
+        "${ROBA_PMW3610_TEXT}"
+    )
+endif()
+
+message(STATUS "roBa: PMW3610 dedicated motion workqueue enabled")
+
 file(WRITE "${ROBA_PMW3610_SOURCE}" "${ROBA_PMW3610_TEXT}")
 
 message(STATUS "roBa: legacy PMW3610 timeout disabled")
