@@ -148,6 +148,202 @@ string(REPLACE
 message(STATUS "roBa: PMW3610 input reports changed to K_NO_WAIT")
 
 
+
+# ------------------------------------------------------------
+# Patch D: always release PMW3610 chip-select after SPI failure.
+#
+# The pinned driver has several error paths that return while CS is still
+# asserted. Patch the exact known paths only. If any path changes, stop the
+# build instead of modifying unknown source.
+# ------------------------------------------------------------
+
+set(ROBA_REG_READ_WRITE_OLD
+[=[        LOG_ERR("Reg read failed on SPI write");
+        return err;]=]
+)
+set(ROBA_REG_READ_WRITE_NEW
+[=[        LOG_ERR("Reg read failed on SPI write");
+        spi_cs_ctrl(dev, false);
+        return err;]=]
+)
+
+set(ROBA_REG_READ_READ_OLD
+[=[        LOG_ERR("Reg read failed on SPI read");
+        return err;]=]
+)
+set(ROBA_REG_READ_READ_NEW
+[=[        LOG_ERR("Reg read failed on SPI read");
+        spi_cs_ctrl(dev, false);
+        return err;]=]
+)
+
+set(ROBA_REG_WRITE_OLD
+[=[        LOG_ERR("Reg write failed on SPI write");
+        return err;]=]
+)
+set(ROBA_REG_WRITE_NEW
+[=[        LOG_ERR("Reg write failed on SPI write");
+        spi_cs_ctrl(dev, false);
+        return err;]=]
+)
+
+set(ROBA_MOTION_WRITE_OLD
+[=[        LOG_ERR("Motion burst failed on SPI write");
+        return err;]=]
+)
+set(ROBA_MOTION_WRITE_NEW
+[=[        LOG_ERR("Motion burst failed on SPI write");
+        spi_cs_ctrl(dev, false);
+        return err;]=]
+)
+
+set(ROBA_MOTION_READ_OLD
+[=[        LOG_ERR("Motion burst failed on SPI read");
+        return err;]=]
+)
+set(ROBA_MOTION_READ_NEW
+[=[        LOG_ERR("Motion burst failed on SPI read");
+        spi_cs_ctrl(dev, false);
+        return err;]=]
+)
+
+foreach(_pair
+    REG_READ_WRITE
+    REG_READ_READ
+    REG_WRITE
+    MOTION_WRITE
+    MOTION_READ
+)
+    set(_old "${ROBA_${_pair}_OLD}")
+    set(_new "${ROBA_${_pair}_NEW}")
+
+    string(FIND "${ROBA_PMW3610_TEXT}" "${_new}" _already)
+    if(_already EQUAL -1)
+        string(FIND "${ROBA_PMW3610_TEXT}" "${_old}" _found)
+        if(_found EQUAL -1)
+            message(FATAL_ERROR
+                "Expected PMW3610 SPI error path ${_pair} was not found. "
+                "Refusing to patch an unknown driver."
+            )
+        endif()
+
+        string(REPLACE
+            "${_old}"
+            "${_new}"
+            ROBA_PMW3610_TEXT
+            "${ROBA_PMW3610_TEXT}"
+        )
+    endif()
+endforeach()
+
+message(STATUS "roBa: PMW3610 SPI error paths now release CS")
+
+# ------------------------------------------------------------
+# Patch E: automatically restart PMW3610 after a report/SPI failure.
+#
+# gpio callback disables the sensor IRQ before trigger_work runs.
+# On report failure, keep IRQ disabled, release CS, reset the driver's
+# asynchronous init state, and start reinitialization after 10 ms.
+# The normal init sequence re-enables IRQ after successful initialization.
+# ------------------------------------------------------------
+
+set(ROBA_WORK_ORIGINAL
+[=[static void pmw3610_work_callback(struct k_work *work) {
+    struct pixart_data *data = CONTAINER_OF(work, struct pixart_data, trigger_work);
+    const struct device *dev = data->dev;
+
+    pmw3610_report_data(dev);
+    set_interrupt(dev, true);
+}]=]
+)
+
+set(ROBA_WORK_PATCHED
+[=[static void pmw3610_work_callback(struct k_work *work) {
+    struct pixart_data *data = CONTAINER_OF(work, struct pixart_data, trigger_work);
+    const struct device *dev = data->dev;
+
+    int err = pmw3610_report_data(dev);
+    if (err) {
+        LOG_ERR("PMW3610 report failed (%d); restarting sensor", err);
+
+        spi_cs_ctrl(dev, false);
+        data->ready = false;
+        data->err = 0;
+        data->async_init_step = ASYNC_INIT_STEP_POWER_UP;
+
+        k_work_schedule(&data->init_work, K_MSEC(10));
+        return;
+    }
+
+    set_interrupt(dev, true);
+}]=]
+)
+
+string(FIND "${ROBA_PMW3610_TEXT}" "PMW3610 report failed (%d); restarting sensor" ROBA_WORK_ALREADY_PATCHED)
+
+if(ROBA_WORK_ALREADY_PATCHED EQUAL -1)
+    string(FIND "${ROBA_PMW3610_TEXT}" "${ROBA_WORK_ORIGINAL}" ROBA_WORK_FOUND)
+    if(ROBA_WORK_FOUND EQUAL -1)
+        message(FATAL_ERROR
+            "Expected PMW3610 work callback was not found. "
+            "Refusing to patch an unknown driver."
+        )
+    endif()
+
+    string(REPLACE
+        "${ROBA_WORK_ORIGINAL}"
+        "${ROBA_WORK_PATCHED}"
+        ROBA_PMW3610_TEXT
+        "${ROBA_PMW3610_TEXT}"
+    )
+endif()
+
+message(STATUS "roBa: PMW3610 automatic recovery enabled")
+
+# ------------------------------------------------------------
+# Patch F: retry PMW3610 initialization if recovery itself fails.
+# ------------------------------------------------------------
+
+set(ROBA_INIT_FAIL_ORIGINAL
+[=[    if (data->err) {
+        LOG_ERR("PMW3610 initialization failed");
+    } else {]=]
+)
+
+set(ROBA_INIT_FAIL_PATCHED
+[=[    if (data->err) {
+        LOG_ERR("PMW3610 initialization failed; retrying");
+
+        spi_cs_ctrl(dev, false);
+        data->ready = false;
+        data->err = 0;
+        data->async_init_step = ASYNC_INIT_STEP_POWER_UP;
+
+        k_work_schedule(&data->init_work, K_MSEC(100));
+    } else {]=]
+)
+
+string(FIND "${ROBA_PMW3610_TEXT}" "PMW3610 initialization failed; retrying" ROBA_INIT_RETRY_ALREADY_PATCHED)
+
+if(ROBA_INIT_RETRY_ALREADY_PATCHED EQUAL -1)
+    string(FIND "${ROBA_PMW3610_TEXT}" "${ROBA_INIT_FAIL_ORIGINAL}" ROBA_INIT_FAIL_FOUND)
+    if(ROBA_INIT_FAIL_FOUND EQUAL -1)
+        message(FATAL_ERROR
+            "Expected PMW3610 init failure block was not found. "
+            "Refusing to patch an unknown driver."
+        )
+    endif()
+
+    string(REPLACE
+        "${ROBA_INIT_FAIL_ORIGINAL}"
+        "${ROBA_INIT_FAIL_PATCHED}"
+        ROBA_PMW3610_TEXT
+        "${ROBA_PMW3610_TEXT}"
+    )
+endif()
+
+message(STATUS "roBa: PMW3610 initialization retry enabled")
+
 file(WRITE "${ROBA_PMW3610_SOURCE}" "${ROBA_PMW3610_TEXT}")
 
 message(STATUS "roBa: legacy PMW3610 timeout disabled")
