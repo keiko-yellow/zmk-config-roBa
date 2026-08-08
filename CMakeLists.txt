@@ -117,106 +117,39 @@ if(ROBA_GUARD_ALREADY_PATCHED EQUAL -1)
     )
 endif()
 
+
+# ------------------------------------------------------------
+# Patch C: prevent PMW3610 pointer reporting from blocking forever.
+#
+# This code is inside if(CONFIG_PMW3610), so the left half does not
+# search for or patch the PMW3610 driver at all.
+#
+# The pinned external driver contains exactly four K_FOREVER timeouts
+# in input_report_rel() calls (X, Y, wheel, horizontal wheel).
+# If that exact structure changes, stop the build instead of guessing.
+# ------------------------------------------------------------
+string(REGEX MATCHALL "K_FOREVER" ROBA_PMW3610_FOREVER_MATCHES "${ROBA_PMW3610_TEXT}")
+list(LENGTH ROBA_PMW3610_FOREVER_MATCHES ROBA_PMW3610_FOREVER_COUNT)
+
+if(NOT ROBA_PMW3610_FOREVER_COUNT EQUAL 4)
+    message(FATAL_ERROR
+        "Expected exactly 4 K_FOREVER occurrences in the pinned PMW3610 driver, "
+        "but found ${ROBA_PMW3610_FOREVER_COUNT}. Refusing to patch an unknown driver."
+    )
+endif()
+
+string(REPLACE
+    "K_FOREVER"
+    "K_NO_WAIT"
+    ROBA_PMW3610_TEXT
+    "${ROBA_PMW3610_TEXT}"
+)
+
+message(STATUS "roBa: PMW3610 input reports changed to K_NO_WAIT")
+
 file(WRITE "${ROBA_PMW3610_SOURCE}" "${ROBA_PMW3610_TEXT}")
 
 message(STATUS "roBa: legacy PMW3610 timeout disabled")
 message(STATUS "roBa: typing guard added to automouse activation")
 
 endif() # CONFIG_PMW3610
-
-# ------------------------------------------------------------
-# Native Zephyr PMW3610 hardening
-#
-# Current "now" uses the Zephyr built-in PMW3610 driver:
-#   ${ZEPHYR_BASE}/drivers/input/input_pmw3610.c
-#
-# That driver reports X/Y from a system work item with K_FOREVER.
-# If the Zephyr input queue is temporarily full, the PMW3610 work item
-# can wait indefinitely. Replace ONLY those two PMW3610 report timeouts
-# with K_NO_WAIT. No overlay, SPI, CPI, automouse, or keymap behavior is changed.
-# ------------------------------------------------------------
-
-set(ROBA_NATIVE_PMW3610_SOURCE
-    "${ZEPHYR_BASE}/drivers/input/input_pmw3610.c"
-)
-
-if(EXISTS "${ROBA_NATIVE_PMW3610_SOURCE}")
-    file(READ "${ROBA_NATIVE_PMW3610_SOURCE}" ROBA_NATIVE_PMW3610_TEXT)
-
-    set(ROBA_NATIVE_X_REPORT_OLD
-        "input_report_rel(dev, cfg->axis_x, x, false, K_FOREVER);"
-    )
-    set(ROBA_NATIVE_X_REPORT_NEW
-        "input_report_rel(dev, cfg->axis_x, x, false, K_NO_WAIT);"
-    )
-
-    set(ROBA_NATIVE_Y_REPORT_OLD
-        "input_report_rel(dev, cfg->axis_y, y, true, K_FOREVER);"
-    )
-    set(ROBA_NATIVE_Y_REPORT_NEW
-        "input_report_rel(dev, cfg->axis_y, y, true, K_NO_WAIT);"
-    )
-
-    string(FIND
-        "${ROBA_NATIVE_PMW3610_TEXT}"
-        "${ROBA_NATIVE_X_REPORT_NEW}"
-        ROBA_NATIVE_X_ALREADY_PATCHED
-    )
-    if(ROBA_NATIVE_X_ALREADY_PATCHED EQUAL -1)
-        string(FIND
-            "${ROBA_NATIVE_PMW3610_TEXT}"
-            "${ROBA_NATIVE_X_REPORT_OLD}"
-            ROBA_NATIVE_X_FOUND
-        )
-        if(ROBA_NATIVE_X_FOUND EQUAL -1)
-            message(FATAL_ERROR
-                "Zephyr native PMW3610 X report line was not found. "
-                "Refusing to patch an unknown driver version."
-            )
-        endif()
-        string(REPLACE
-            "${ROBA_NATIVE_X_REPORT_OLD}"
-            "${ROBA_NATIVE_X_REPORT_NEW}"
-            ROBA_NATIVE_PMW3610_TEXT
-            "${ROBA_NATIVE_PMW3610_TEXT}"
-        )
-    endif()
-
-    string(FIND
-        "${ROBA_NATIVE_PMW3610_TEXT}"
-        "${ROBA_NATIVE_Y_REPORT_NEW}"
-        ROBA_NATIVE_Y_ALREADY_PATCHED
-    )
-    if(ROBA_NATIVE_Y_ALREADY_PATCHED EQUAL -1)
-        string(FIND
-            "${ROBA_NATIVE_PMW3610_TEXT}"
-            "${ROBA_NATIVE_Y_REPORT_OLD}"
-            ROBA_NATIVE_Y_FOUND
-        )
-        if(ROBA_NATIVE_Y_FOUND EQUAL -1)
-            message(FATAL_ERROR
-                "Zephyr native PMW3610 Y report line was not found. "
-                "Refusing to patch an unknown driver version."
-            )
-        endif()
-        string(REPLACE
-            "${ROBA_NATIVE_Y_REPORT_OLD}"
-            "${ROBA_NATIVE_Y_REPORT_NEW}"
-            ROBA_NATIVE_PMW3610_TEXT
-            "${ROBA_NATIVE_PMW3610_TEXT}"
-        )
-    endif()
-
-    file(WRITE
-        "${ROBA_NATIVE_PMW3610_SOURCE}"
-        "${ROBA_NATIVE_PMW3610_TEXT}"
-    )
-
-    message(STATUS "roBa: Zephyr native PMW3610 input reports changed to K_NO_WAIT")
-else()
-    message(FATAL_ERROR
-        "Zephyr native PMW3610 driver was not found at "
-        "${ROBA_NATIVE_PMW3610_SOURCE}"
-    )
-endif()
-
