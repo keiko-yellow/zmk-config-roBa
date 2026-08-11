@@ -2,13 +2,13 @@
  * roBa legacy PMW3610 automouse controller
  *
  * Behavior:
- * - PMW3610 movement activates layer 4 through the legacy driver.
- * - Time alone never deactivates layer 4.
- * - MB1-MB5 positions keep layer 4 active.
- * - Held Ctrl and Shift mod-taps keep layer 4 active.
+ * - PMW3610 movement activates layer 3 through the legacy driver.
+ * - Time alone never deactivates layer 3.
+ * - MB1-MB5 positions keep layer 3 active.
+ * - Held Ctrl and Shift mod-taps keep layer 3 active.
  * - Tapped Ctrl/Shift mod-taps (E/H/Space/Enter) are treated as normal keys
- *   and deactivate layer 4 on physical key release.
- * - Any other normal key immediately deactivates layer 4.
+ *   and deactivate layer 3 on physical key release.
+ * - Any other normal key immediately deactivates layer 3.
  * - After a normal key press, pointer movement continues, but automouse
  *   activation is blocked for CONFIG_ROBA_AUTOMOUSE_TYPING_GUARD_MS.
  *
@@ -19,18 +19,17 @@
  * - Position 41 = &shift_mt RIGHT_SHIFT ENTER
  *
  * A modifier mod-tap press is not treated as a normal key immediately.
- * If ZMK resolves it as a held modifier, layer 4 stays active so
+ * If ZMK resolves it as a held modifier, layer 3 stays active so
  * Ctrl+click/drag and Shift+click work.
  *
  * For very fast modifier + mouse-button chords, the physical mouse-button
  * press also marks every pending Ctrl/Shift candidate as a hold. This avoids
- * a race where layer 4 is deactivated before the delayed T/N combo decision
+ * a race where layer 3 is deactivated before the delayed T/N combo decision
  * has finished.
  *
  * If a modifier key is tapped without a mouse-button press, the tap
- * (E/H/Space/Enter) is treated as normal input and exits layer 4.
+ * (E/H/Space/Enter) is treated as normal input and exits layer 3.
  */
-
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -47,8 +46,7 @@
 
 LOG_MODULE_REGISTER(roba_automouse, CONFIG_ZMK_LOG_LEVEL);
 
-#define ROBA_MOUSE_LAYER 4
-
+#define ROBA_MOUSE_LAYER 3
 #define ROBA_LEFT_CTRL_POSITION 10
 #define ROBA_RIGHT_CTRL_POSITION 21
 #define ROBA_LEFT_SHIFT_POSITION 38
@@ -61,7 +59,6 @@ static bool left_ctrl_candidate;
 static bool right_ctrl_candidate;
 static bool left_shift_candidate;
 static bool right_shift_candidate;
-
 static bool left_ctrl_resolved_as_hold;
 static bool right_ctrl_resolved_as_hold;
 static bool left_shift_resolved_as_hold;
@@ -99,7 +96,7 @@ static void roba_mark_pending_modifiers_as_mouse_hold(void) {
 }
 
 /*
- * Called by the patched PMW3610 driver immediately before layer 4 activation.
+ * Called by the patched PMW3610 driver immediately before layer 3 activation.
  * Cursor movement itself is never blocked.
  */
 bool roba_automouse_allowed(void) {
@@ -171,7 +168,7 @@ static int roba_position_listener(const zmk_event_t *eh) {
 
     /*
      * Modifier mod-tap press:
-     * Do not start the typing guard and do not exit layer 4 yet.
+     * Do not start the typing guard and do not exit layer 3 yet.
      */
     if (ev->state && ev->position == ROBA_LEFT_CTRL_POSITION) {
         left_ctrl_candidate = true;
@@ -199,7 +196,7 @@ static int roba_position_listener(const zmk_event_t *eh) {
 
     /*
      * Modifier mod-tap release:
-     * - held modifier: preserve automouse layer 4
+     * - held modifier: preserve automouse layer 3
      * - tapped E/H/Space/Enter: treat as a normal typed key
      */
     if (!ev->state && ev->position == ROBA_LEFT_CTRL_POSITION) {
@@ -257,7 +254,7 @@ static int roba_position_listener(const zmk_event_t *eh) {
     bool mouse_layer_active = zmk_keymap_layer_active(ROBA_MOUSE_LAYER);
 
     /*
-     * W/R/Y/T/N are mouse-button positions only while layer 4 is active.
+     * W/R/Y/T/N are mouse-button positions only while layer 3 is active.
      * On the base layer they remain normal typing keys.
      */
     if (mouse_layer_active && roba_is_mouse_button_position(ev->position)) {
