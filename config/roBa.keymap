@@ -2,7 +2,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-
 /*
  * レイヤー番号（数字レイヤーを1枚に統合）
  *
@@ -28,7 +27,6 @@
     flavor = "balanced";
     quick-tap-ms = <0>;
 };
-
 / {
     combos {
         compatible = "zmk,combos";
@@ -40,18 +38,22 @@
             layers = <AUTO_MOUSE FIXED_MOUSE>;
         };
 
+        /*
+         * BASEでは W+R / R+Y を * / に使用するため、
+         * MB4 / MB5 はBASEから除外する。
+         * AUTO_MOUSE / FIXED_MOUSEでは従来どおりMB4 / MB5。
+         */
         mb4 {
             bindings = <&mkp MB4>;
             key-positions = <6 7>;
             timeout-ms = <80>;
-            layers = <BASE BLUETOOTH FUNCTION AUTO_MOUSE FIXED_MOUSE>;
+            layers = <BLUETOOTH FUNCTION AUTO_MOUSE FIXED_MOUSE>;
         };
-
         mb5 {
             bindings = <&mkp MB5>;
             key-positions = <7 8>;
             timeout-ms = <80>;
-            layers = <BASE BLUETOOTH FUNCTION AUTO_MOUSE FIXED_MOUSE>;
+            layers = <BLUETOOTH FUNCTION AUTO_MOUSE FIXED_MOUSE>;
         };
 
         left {
@@ -65,7 +67,6 @@
             key-positions = <12 13>;
             timeout-ms = <80>;
         };
-
         up {
             bindings = <&kp UP_ARROW>;
             key-positions = <1 2>;
@@ -83,7 +84,6 @@
             key-positions = <1 0>;
             timeout-ms = <80>;
         };
-
         del2 {
             bindings = <&kp ESCAPE>;
             key-positions = <8 9>;
@@ -101,7 +101,6 @@
             key-positions = <30 31>;
             timeout-ms = <80>;
         };
-
         hankaku {
             bindings = <&kp GRAVE>;
             key-positions = <20 21>;
@@ -119,7 +118,6 @@
             key-positions = <22 23>;
             timeout-ms = <80>;
         };
-
         xv_home {
             bindings = <&kp HOME>;
             key-positions = <23 25>;
@@ -137,7 +135,6 @@
             key-positions = <31 32>;
             timeout-ms = <80>;
         };
-
         dj_end {
             bindings = <&kp END>;
             key-positions = <30 32>;
@@ -145,7 +142,16 @@
         };
 
         /*
-         * 数字コンボは統合NUMBERレイヤーだけで有効。
+         * 演算子コンボはBASEとNUMBERの両方で有効。
+         *
+         * BASE:
+         * T+S = =
+         * W+R = *
+         * R+Y = /
+         * T+N = +
+         * N+S = -
+         *
+         * AUTO_MOUSE / FIXED_MOUSEでは W+R / R+Y はMB4 / MB5を優先。
          *
          * Windows日本語配列:
          * - "=" はKP_EQUALがWindows非対応なので、従来どおり
@@ -156,35 +162,33 @@
             bindings = <&kp UNDER>;
             key-positions = <18 20>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <BASE NUM>;
         };
-
         num_78_multiply {
             bindings = <&kp KP_MULTIPLY>;
             key-positions = <6 7>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <BASE NUM>;
         };
 
         num_89_divide {
             bindings = <&kp KP_DIVIDE>;
             key-positions = <7 8>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <BASE NUM>;
         };
 
         num_45_plus {
             bindings = <&kp KP_PLUS>;
             key-positions = <18 19>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <BASE NUM>;
         };
-
         num_56_minus {
             bindings = <&kp KP_MINUS>;
             key-positions = <19 20>;
             timeout-ms = <80>;
-            layers = <NUM>;
+            layers = <BASE NUM>;
         };
 
         f4 {
@@ -193,7 +197,6 @@
             timeout-ms = <80>;
         };
     };
-
     behaviors {
         ctrl_mt: ctrl_mt {
             compatible = "zmk,behavior-hold-tap";
@@ -205,7 +208,6 @@
             hold-while-undecided;
             bindings = <&kp>, <&kp>;
         };
-
         shift_mt: shift_mt {
             compatible = "zmk,behavior-hold-tap";
             label = "SHIFT_MT";
@@ -216,7 +218,6 @@
             hold-while-undecided;
             bindings = <&kp>, <&kp>;
         };
-
         pgdn_pgup: pgdn_pgup {
             compatible = "zmk,behavior-mod-morph";
             label = "PGDN_PGUP";
@@ -228,7 +229,6 @@
 
     keymap {
         compatible = "zmk,keymap";
-
         /* Layer 0 */
         base {
             bindings = <
@@ -239,7 +239,6 @@
             >;
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
-
         /* Layer 1 */
         bluetooth {
             bindings = <
@@ -250,7 +249,6 @@
             >;
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
-
         /* Layer 2 */
         function {
             bindings = <
@@ -261,7 +259,6 @@
             >;
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
-
         /* Layer 3 */
         auto_mouse {
             bindings = <
@@ -272,7 +269,6 @@
             >;
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
-
         /* Layer 4 */
         fixed_mouse {
             bindings = <
@@ -283,7 +279,6 @@
             >;
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
         };
-
         /*
          * Layer 5: 数字・記号
          *
