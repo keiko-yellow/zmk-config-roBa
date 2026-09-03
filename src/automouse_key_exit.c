@@ -5,6 +5,7 @@
  * - PMW3610 movement activates layer 3 through the legacy driver.
  * - Time alone never deactivates layer 3.
  * - MB1-MB5 positions keep layer 3 active.
+ * - The base "-" key (position 14) also keeps layer 3 active.
  * - Held Ctrl and Shift mod-taps keep layer 3 active.
  * - Tapped Ctrl/Shift mod-taps (E/H/Space/Enter) are treated as normal keys
  *   and deactivate layer 3 on physical key release.
@@ -30,9 +31,9 @@
  * If a modifier key is tapped without a mouse-button press, the tap
  * (E/H/Space/Enter) is treated as normal input and exits layer 3.
  */
+
 #include <stdbool.h>
 #include <stdint.h>
-
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/sys/atomic.h>
@@ -51,6 +52,7 @@ LOG_MODULE_REGISTER(roba_automouse, CONFIG_ZMK_LOG_LEVEL);
 #define ROBA_RIGHT_CTRL_POSITION 21
 #define ROBA_LEFT_SHIFT_POSITION 38
 #define ROBA_RIGHT_SHIFT_POSITION 41
+#define ROBA_MINUS_POSITION 14
 
 static atomic_t typing_guard_active = ATOMIC_INIT(0);
 static atomic_t last_normal_key_time = ATOMIC_INIT(0);
@@ -59,6 +61,7 @@ static bool left_ctrl_candidate;
 static bool right_ctrl_candidate;
 static bool left_shift_candidate;
 static bool right_shift_candidate;
+
 static bool left_ctrl_resolved_as_hold;
 static bool right_ctrl_resolved_as_hold;
 static bool left_shift_resolved_as_hold;
@@ -259,6 +262,15 @@ static int roba_position_listener(const zmk_event_t *eh) {
      */
     if (mouse_layer_active && roba_is_mouse_button_position(ev->position)) {
         roba_mark_pending_modifiers_as_mouse_hold();
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    /*
+     * Keep AUTO_MOUSE active when the physical "-" key is pressed.
+     * The AUTO_MOUSE keymap entry is transparent, so the BASE layer still
+     * sends KC_MINUS normally. No typing guard is started for this key.
+     */
+    if (mouse_layer_active && ev->position == ROBA_MINUS_POSITION) {
         return ZMK_EV_EVENT_BUBBLE;
     }
 
