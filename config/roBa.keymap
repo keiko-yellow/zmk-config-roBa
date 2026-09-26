@@ -326,10 +326,10 @@
 
         number {
             bindings = <
-&kp AT_SIGN    &kp LS(INT1)  &kp QUESTION     &kp UP_ARROW        &kp ASTERISK                                             &kp COMMA   &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp LS(NUMBER_4)
-&kp SQT        &kp KP_MINUS  &kp CARET        &kp LS(LEFT_ARROW)  &kp RIGHT_ARROW       &kp LS(ASTRK)      &kp UNDERSCORE  &kp KP_N0   &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp LS(N5)
-&kp HASH       &kp KP_PLUS   &kp EXCLAMATION  &kp DOWN_ARROW      &kp LEFT_PARENTHESIS  &trans             &kp KP_NUMLOCK  &kp PERIOD  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp INTERNATIONAL_3
-&kp SEMICOLON  &kp UNDER     &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                                       &trans
+&kp AT_SIGN  &kp LS(INT1)  &kp QUESTION     &kp UP_ARROW        &kp ASTERISK                                             &kp COMMA   &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp LS(NUMBER_4)
+&kp SQT      &kp PLUS      &kp CARET        &kp LS(LEFT_ARROW)  &kp RIGHT_ARROW       &kp LS(ASTRK)      &kp UNDERSCORE  &kp KP_N0   &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp LS(N5)
+&kp HASH     &kp SEMI      &kp EXCLAMATION  &kp DOWN_ARROW      &kp LEFT_PARENTHESIS  &trans             &kp KP_NUMLOCK  &kp PERIOD  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp INTERNATIONAL_3
+&kp A        &kp A         &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                                       &trans
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
