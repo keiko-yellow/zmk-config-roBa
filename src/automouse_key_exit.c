@@ -123,7 +123,12 @@ static int roba_position_listener(const zmk_event_t *eh) {
     if (ev == NULL) return ZMK_EV_EVENT_BUBBLE;
 
     if (ev->state && ev->position == ROBA_LEFT_CTRL_POSITION) {
-        left_ctrl_candidate = true; left_ctrl_resolved_as_hold = false; return ZMK_EV_EVENT_BUBBLE;
+        left_ctrl_candidate = true;
+        left_ctrl_resolved_as_hold = false;
+        if (zmk_keymap_layer_active(ROBA_MOUSE_LAYER)) {
+            (void)k_work_cancel_delayable(&roba_combo_candidate_exit_work);
+        }
+        return ZMK_EV_EVENT_BUBBLE;
     }
     if (ev->state && ev->position == ROBA_RIGHT_CTRL_POSITION) {
         right_ctrl_candidate = true; right_ctrl_resolved_as_hold = false; return ZMK_EV_EVENT_BUBBLE;
@@ -136,9 +141,9 @@ static int roba_position_listener(const zmk_event_t *eh) {
     }
 
     if (!ev->state && ev->position == ROBA_LEFT_CTRL_POSITION) {
-        bool hold = left_ctrl_resolved_as_hold;
-        left_ctrl_candidate = left_ctrl_resolved_as_hold = false;
-        if (!hold) { roba_cancel_combo_candidate_exit(); roba_exit_mouse_layer_for_normal_key(); }
+        // Position 10: E on tap, Ctrl on hold. Neither exits auto mouse.
+        left_ctrl_candidate = false;
+        left_ctrl_resolved_as_hold = false;
         return ZMK_EV_EVENT_BUBBLE;
     }
     if (!ev->state && ev->position == ROBA_RIGHT_CTRL_POSITION) {
