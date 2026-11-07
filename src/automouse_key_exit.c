@@ -35,8 +35,6 @@ static bool left_shift_resolved_as_hold, right_shift_resolved_as_hold;
 
 static bool w_down, r_down, y_down;
 static bool mouse_combo_active;
-static bool e_down;
-static bool preserve_mouse_layer_for_e;
 
 static void roba_start_typing_guard(void) {
     atomic_set(&last_normal_key_time, (atomic_val_t)k_uptime_get_32());
@@ -44,7 +42,6 @@ static void roba_start_typing_guard(void) {
 }
 
 static void roba_exit_mouse_layer_for_normal_key(void) {
-    preserve_mouse_layer_for_e = false;
     roba_start_typing_guard();
     if (zmk_keymap_layer_active(ROBA_MOUSE_LAYER)) {
         zmk_keymap_layer_deactivate(ROBA_MOUSE_LAYER);
@@ -83,7 +80,7 @@ static void roba_mark_pending_modifiers_as_mouse_hold(void) {
 
 static void roba_combo_candidate_exit_handler(struct k_work *work) {
     ARG_UNUSED(work);
-    if (mouse_combo_active || e_down || preserve_mouse_layer_for_e) return;
+    if (mouse_combo_active) return;
     w_down = r_down = y_down = false;
     roba_exit_mouse_layer_for_normal_key();
 }
@@ -128,12 +125,8 @@ static int roba_position_listener(const zmk_event_t *eh) {
     if (ev->state && ev->position == ROBA_LEFT_CTRL_POSITION) {
         left_ctrl_candidate = true;
         left_ctrl_resolved_as_hold = false;
-        e_down = true;
-        preserve_mouse_layer_for_e = zmk_keymap_layer_active(ROBA_MOUSE_LAYER);
-        if (preserve_mouse_layer_for_e) {
+        if (zmk_keymap_layer_active(ROBA_MOUSE_LAYER)) {
             (void)k_work_cancel_delayable(&roba_combo_candidate_exit_work);
-            w_down = r_down = y_down = false;
-            mouse_combo_active = false;
         }
         return ZMK_EV_EVENT_BUBBLE;
     }
@@ -151,14 +144,6 @@ static int roba_position_listener(const zmk_event_t *eh) {
         // Position 10: E on tap, Ctrl on hold. Neither exits auto mouse.
         left_ctrl_candidate = false;
         left_ctrl_resolved_as_hold = false;
-        e_down = false;
-        (void)k_work_cancel_delayable(&roba_combo_candidate_exit_work);
-        // Recover if another layer handler deactivated auto mouse during E.
-        if (preserve_mouse_layer_for_e &&
-            !zmk_keymap_layer_active(ROBA_MOUSE_LAYER)) {
-            zmk_keymap_layer_activate(ROBA_MOUSE_LAYER);
-        }
-        preserve_mouse_layer_for_e = false;
         return ZMK_EV_EVENT_BUBBLE;
     }
     if (!ev->state && ev->position == ROBA_RIGHT_CTRL_POSITION) {
