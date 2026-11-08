@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/modifiers.h>
 
 /* Encoder wheel: ensure a 20ms rotary pulse produces usable scroll. */
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 80
@@ -237,10 +238,27 @@
             bindings = <&kp>, <&kp>;
         };
 
+        /* Reverse normal wheel, but retain the original Ctrl+wheel zoom direction. */
+        encoder_cw: encoder_cw {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        encoder_ccw: encoder_ccw {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            keep-mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
         encoder_wheel: encoder_wheel {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            bindings = <&encoder_cw>, <&encoder_ccw>;
             tap-ms = <20>;
         };
 
