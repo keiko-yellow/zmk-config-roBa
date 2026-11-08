@@ -3,6 +3,9 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+/* Encoder wheel: ensure a 20ms rotary pulse produces usable scroll. */
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 80
+
 /*
  * レイヤー番号（数字レイヤーを1枚に統合）
  *
