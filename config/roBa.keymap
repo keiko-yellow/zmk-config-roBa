@@ -234,6 +234,13 @@
             bindings = <&kp>, <&kp>;
         };
 
+        encoder_wheel: encoder_wheel {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            tap-ms = <20>;
+        };
+
         pgdn_pgup: pgdn_pgup {
             compatible = "zmk,behavior-mod-morph";
             label = "PGDN_PGUP";
@@ -257,7 +264,7 @@
 &kp PRINTSCREEN   &kp LS(HOME)    &kp LS(END)  &lt NUM TAB  &shift_mt LSHIFT SPACE  &lt FUNCTION ESCAPE      &lt NUM BACKSPACE  &shift_mt RIGHT_SHIFT ENTER                       &lt BLUETOOTH GRAVE
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&encoder_wheel>;
         };
 
         /* Layer 1 */
@@ -270,7 +277,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &bt BT_CLR_ALL  &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&encoder_wheel>;
         };
 
         /* Layer 2 */
@@ -283,7 +290,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                           &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&encoder_wheel>;
         };
 
         /* Layer 3 */
@@ -296,7 +303,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&encoder_wheel>;
         };
 
         /* Layer 4 */
@@ -309,7 +316,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&encoder_wheel>;
         };
 
         /*
@@ -332,7 +339,7 @@
 &kp A        &kp A         &trans           &kp LG(D)           &kp LEFT_WIN          &trans             &trans          &trans                                       &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PAGE_DOWN PG_UP>;
+            sensor-bindings = <&encoder_wheel>;
         };
     };
 };
